@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TecnoShopSV · Celulares garantizados en El Salvador</title>
+<meta name="description" content="iPhone y Samsung nuevos y seminuevos, 100% testeados, liberados y con 3 meses de garantía. Envíos a todo El Salvador y cuotas con tarjeta. Santa Tecla.">
+<meta name="theme-color" content="#2B0F4C">
+<link rel="icon" href="https://catalogo.tecnoshopsv.com/favicon-32.png">
+<link rel="apple-touch-icon" href="https://catalogo.tecnoshopsv.com/icono-180.png">
+<meta property="og:title" content="TecnoShopSV · Celulares garantizados">
+<meta property="og:description" content="iPhone y Samsung con 3 meses de garantía, cargador original y envíos a todo El Salvador.">
+<meta property="og:image" content="https://catalogo.tecnoshopsv.com/icono-512.png">
+<style>
+  :root{
+    --morado:#4B1F7A; --morado-2:#2B0F4C; --morado-suave:#F3EEFA; --amarillo:#FFC52E; --amarillo-osc:#3a2a00;
+    --texto:#17141C; --suave:#6B6575; --linea:#E8E4EE; --fondo:#F7F6FA; --verde:#1FA855; --rojo:#D93B3B;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--fondo);color:var(--texto);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  button,input,select{font:inherit}
+  a{color:inherit}
+  .dentro{max-width:1100px;margin:0 auto;padding:0 16px}
+
+  /* Encabezado */
+  header{background:var(--morado-2);color:#fff;position:sticky;top:0;z-index:30;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+  .cab{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
+  .marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .marca img{width:40px;height:40px;border-radius:10px;background:#fff}
+  .marca b{display:block;font-size:18px;letter-spacing:.3px}
+  .marca b span{color:var(--amarillo)}
+  .marca small{display:block;font-size:12px;opacity:.8}
+  .btn-wa-cab{display:inline-flex;align-items:center;gap:6px;background:var(--verde);color:#fff;text-decoration:none;font-weight:700;font-size:14px;border-radius:999px;padding:8px 14px;white-space:nowrap}
+
+  /* Portada */
+  .portada{background:linear-gradient(160deg,var(--morado-2),var(--morado));color:#fff;padding:22px 0 26px}
+  .portada h1{margin:0 0 6px;font-size:26px;line-height:1.2}
+  .portada h1 span{color:var(--amarillo)}
+  .portada p{margin:0 0 16px;opacity:.9;max-width:620px}
+  .sellos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .sello{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px 12px;font-size:13px}
+  .sello b{display:block;font-size:14px;color:var(--amarillo)}
+
+  /* Barra de búsqueda */
+  .barra{background:#fff;border-bottom:1px solid var(--linea);position:sticky;top:60px;z-index:20}
+  .barra .dentro{padding-top:10px;padding-bottom:10px}
+  #q{width:100%;border:1px solid var(--linea);border-radius:12px;padding:11px 14px;font-size:16px;background:var(--fondo);outline:none}
+  #q:focus{border-color:var(--morado);background:#fff}
+  .filtros{display:flex;gap:8px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+  .filtros::-webkit-scrollbar{display:none}
+  .chip{border:1px solid var(--linea);background:#fff;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600;white-space:nowrap;cursor:pointer;color:var(--texto)}
+  .chip.on{background:var(--morado);border-color:var(--morado);color:#fff}
+  .orden{margin-left:auto;border:1px solid var(--linea);border-radius:999px;padding:7px 10px;font-size:14px;background:#fff;color:var(--texto)}
+
+  /* Equipos */
+  main{padding:16px 0 120px}
+  .resumen{color:var(--suave);font-size:13px;margin:0 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{background:#fff;border:1px solid var(--linea);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;text-align:left;padding:0;color:inherit}
+  .card:active{transform:scale(.99)}
+  .foto{background:linear-gradient(180deg,#FBFAFD,#EFEBF5);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .foto img{width:100%;height:100%;object-fit:contain}
+  .foto svg{width:42%;height:auto;color:#B7A9CC}
+  .etq{position:absolute;top:8px;left:8px;background:var(--amarillo);color:var(--amarillo-osc);font-size:11px;font-weight:800;border-radius:999px;padding:3px 8px}
+  .etq.nuevo{background:var(--verde);color:#fff}
+  .card .cuerpo{padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;flex:1}
+  .card h3{margin:0;font-size:15px;line-height:1.25}
+  .card .cap{font-size:12px;color:var(--suave)}
+  .colores{display:flex;gap:4px;margin:4px 0 2px;flex-wrap:wrap}
+  .punto{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+  .desde{font-size:12px;color:var(--suave);margin-top:auto}
+  .desde b{display:block;font-size:19px;color:var(--morado);line-height:1.2}
+  .ref{font-size:10px;color:#A39CAD;text-align:center;padding:4px 0 0}
+  .vacio{background:#fff;border:1px dashed var(--linea);border-radius:14px;padding:26px;text-align:center;color:var(--suave)}
+
+  /* Secciones de información */
+  .info{margin-top:28px;display:grid;gap:12px}
+  .info h2{font-size:20px;margin:6px 0 2px}
+  .bloque{background:#fff;border:1px solid var(--linea);border-radius:16px;padding:16px}
+  .bloque h3{margin:0 0 8px;font-size:16px;display:flex;align-items:center;gap:8px}
+  .bloque p,.bloque li{color:#3C3645;font-size:14px;margin:0 0 6px}
+  .bloque ul{margin:0;padding-left:18px}
+  .cats{display:grid;gap:6px}
+  .cat{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+  .cat b{min-width:74px;display:inline-block;background:var(--morado-suave);color:var(--morado);border-radius:8px;padding:2px 8px;text-align:center;font-size:13px}
+  .mapa{display:inline-flex;align-items:center;gap:6px;margin-top:6px;background:var(--morado);color:#fff;text-decoration:none;border-radius:10px;padding:9px 14px;font-weight:700;font-size:14px}
+  footer{background:var(--morado-2);color:#fff;padding:22px 0 110px;font-size:13px}
+  footer a{color:var(--amarillo)}
+  footer p{margin:0 0 6px;opacity:.9}
+
+  /* Ventana de detalle / pedido / cuotas */
+  .fondo-modal{position:fixed;inset:0;background:rgba(20,10,35,.55);z-index:50;display:flex;align-items:flex-end;justify-content:center}
+  .fondo-modal[hidden]{display:none}
+  .modal{background:#fff;width:100%;max-width:560px;max-height:92vh;border-radius:20px 20px 0 0;display:flex;flex-direction:column;overflow:hidden}
+  .modal-cab{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--linea)}
+  .modal-cab h3{margin:0;font-size:17px}
+  .modal-cab small{display:block;color:var(--suave);font-size:12px;font-weight:400}
+  .cerrar{border:0;background:#F1EEF5;color:var(--morado);width:36px;height:36px;border-radius:50%;font-size:22px;cursor:pointer;flex:none}
+  .modal-cuerpo{overflow:auto;padding:12px 16px 16px}
+  .det-foto{height:190px;border-radius:14px;margin-bottom:12px}
+  .op{border:1px solid var(--linea);border-radius:14px;padding:12px;margin-bottom:10px}
+  .op-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .op-t{font-weight:700}
+  .op-s{font-size:13px;color:var(--suave)}
+  .op-nota{font-size:12px;color:#7A5A00;background:#FFF6DA;border-radius:8px;padding:4px 8px;margin-top:6px;display:inline-block}
+  .precios{text-align:right;white-space:nowrap}
+  .precios b{display:block;font-size:20px;color:var(--morado)}
+  .precios span{font-size:12px;color:var(--suave)}
+  .pago-lbl{font-size:11px;color:var(--suave);display:block}
+  .op-acc{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap}
+  .btn{border:0;border-radius:10px;padding:9px 14px;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-add{background:var(--morado);color:#fff}
+  .btn-sec{background:var(--morado-suave);color:var(--morado)}
+  .btn-wa{background:var(--verde);color:#fff}
+  .quedan{font-size:12px;color:var(--rojo);font-weight:700}
+  .paso{display:inline-flex;align-items:center;gap:8px;background:#F1EEF5;border-radius:10px;padding:4px}
+  .paso button{border:0;background:#fff;color:var(--morado);width:30px;height:30px;border-radius:8px;font-size:18px;font-weight:800;cursor:pointer}
+  .paso span{font-size:13px;font-weight:700;color:var(--morado);min-width:62px;text-align:center}
+
+  .campo{display:block;margin:10px 0}
+  .campo > span{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+  .campo select,.campo input{width:100%;border:1px solid var(--linea);border-radius:10px;padding:10px 12px;font-size:15px;background:#fff}
+  .opciones{display:grid;gap:8px}
+  .opcion{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--linea);border-radius:12px;padding:10px 12px;cursor:pointer}
+  .opcion input{margin-top:3px;accent-color:var(--morado)}
+  .opcion b{display:block;font-size:14px}
+  .opcion small{color:var(--suave);font-size:12px}
+  .opcion:has(input:checked){border-color:var(--morado);background:var(--morado-suave)}
+  .resultado{background:var(--morado-suave);border-radius:14px;padding:14px;margin-top:12px}
+  .resultado .fila{display:flex;justify-content:space-between;gap:10px;margin:3px 0;font-size:14px}
+  .resultado .grande{font-size:24px;font-weight:800;color:var(--morado)}
+  .aviso-peq{font-size:12px;color:var(--suave);margin-top:8px}
+  .linea{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--linea)}
+  .linea .t{font-weight:700;font-size:14px}
+  .linea .s{font-size:12px;color:var(--suave)}
+  .totales{margin-top:10px}
+  .totales .fila{display:flex;justify-content:space-between;font-size:15px;margin:4px 0}
+  .totales .fila b{font-size:17px}
+  .modal-pie{padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--linea)}
+  .enviar{width:100%;border:0;background:var(--verde);color:#fff;font-weight:800;font-size:16px;border-radius:12px;padding:14px;cursor:pointer}
+  .vaciar{width:100%;border:0;background:none;color:var(--suave);text-decoration:underline;padding:8px;cursor:pointer;font-size:13px}
+
+  .barra-pedido{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--morado-2);color:#fff;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+  .barra-pedido[hidden]{display:none}
+  .barra-pedido b{font-size:16px}
+  .barra-pedido button{border:0;background:var(--amarillo);color:var(--amarillo-osc);font-weight:800;border-radius:10px;padding:10px 14px;cursor:pointer}
+  .flotante{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:35;background:var(--verde);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .flotante svg{width:30px;height:30px}
+  body.con-pedido .flotante{bottom:calc(76px + env(safe-area-inset-bottom))}
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(160px);background:var(--texto);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:60;transition:transform .25s;max-width:90vw;text-align:center}
+  .toast.ver{transform:translateX(-50%) translateY(0)}
+  .estado{font-size:12px;color:var(--suave);text-align:center;margin-top:16px}
+
+  @media (min-width:700px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .sellos{grid-template-columns:repeat(4,1fr)}
+    .portada h1{font-size:32px}
+    .info{grid-template-columns:1fr 1fr}
+    .info h2{grid-column:1/-1}
+    .fondo-modal{align-items:center}
+    .modal{border-radius:20px}
+  }
+  @media (min-width:1000px){ .grid{grid-template-columns:repeat(4,1fr)} }
+</style>
+</head>
+<body>
+<header>
+  <div class="dentro cab">
+    <a class="marca" href="#"><img src="https://catalogo.tecnoshopsv.com/icono-180.png" alt=""><div><b>TECNOSHOP<span>SV</span></b><small>Celulares garantizados · Santa Tecla</small></div></a>
+    <a class="btn-wa-cab" id="waCab" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</header>
+
+<section class="portada">
+  <div class="dentro">
+    <h1>Tu próximo <span>iPhone o Samsung</span>, con garantía</h1>
+    <p>Equipos nuevos y seminuevos, 100% testeados y liberados para todas las redes. Elige el tuyo y te lo enviamos a todo El Salvador.</p>
+    <div class="sellos">
+      <div class="sello"><b>3 meses de garantía</b>Directo con nosotros</div>
+      <div class="sello"><b>Cargador original</b>Cable + cubo incluidos</div>
+      <div class="sello"><b>Envíos a todo el país</b>Motorista el mismo día</div>
+      <div class="sello"><b>Cuotas con tarjeta</b>BAC, Agrícola, Cuscatlán, Promerica</div>
+    </div>
+  </div>
+</section>
+
+<div class="barra"><div class="dentro">
+  <input id="q" type="search" placeholder="Busca: iPhone 13, S23 Ultra, 256GB…" autocomplete="off">
+  <div class="filtros" id="filtros">
+    <button class="chip on" data-marca="">Todos</button>
+    <button class="chip" data-marca="iphone">iPhone</button>
+    <button class="chip" data-marca="samsung">Samsung</button>
+    <button class="chip" data-cuotas="1">💳 Calcular cuotas</button>
+    <select class="orden" id="orden" aria-label="Ordenar">
+      <option value="modelo">Ordenar: modelo</option>
+      <option value="menor">Menor precio</option>
+      <option value="mayor">Mayor precio</option>
+    </select>
+  </div>
+</div></div>
+
+<main class="dentro">
+  <p class="resumen" id="resumen"></p>
+  <div class="grid" id="grid"><div class="vacio" style="grid-column:1/-1">Cargando equipos disponibles…</div></div>
+
+  <section class="info" id="info">
+    <h2>Compra con confianza</h2>
+    <div class="bloque">
+      <h3>🛡️ Garantía y qué incluye</h3>
+      <ul>
+        <li>3 meses de garantía directa con TecnoShopSV.</li>
+        <li>Cargador original: cable + cubo.</li>
+        <li>Equipos 100% testeados y liberados para todas las redes.</li>
+      </ul>
+      <p class="aviso-peq">La garantía no cubre golpes, humedad, pantalla quebrada ni equipos abiertos por terceros.</p>
+    </div>
+    <div class="bloque">
+      <h3>🏷️ Categorías de los equipos</h3>
+      <div class="cats">
+        <div class="cat"><b>Nuevo</b><span>Equipo nuevo.</span></div>
+        <div class="cat"><b>Open Box</b><span>Caja abierta, prácticamente sin uso.</span></div>
+        <div class="cat"><b>A+</b><span>Estética excelente, casi impecable.</span></div>
+        <div class="cat"><b>A</b><span>Muy buen estado, con leves marcas de uso.</span></div>
+        <div class="cat"><b>B+ / B</b><span>Marcas de uso visibles, funcionamiento al 100%.</span></div>
+      </div>
+    </div>
+    <div class="bloque">
+      <h3>🚚 Envíos y retiro</h3>
+      <ul>
+        <li><b>Motorista personalizado:</b> entrega el mismo día del pedido. El costo depende de la zona.</li>
+        <li><b>C807 Express:</b> $3.50, llega al día siguiente (pedidos del sábado llegan el lunes). Permite pago contra entrega.</li>
+        <li><b>Retiro en tienda:</b> sin costo, en Santa Tecla.</li>
+      </ul>
+    </div>
+    <div class="bloque">
+      <h3>💳 Formas de pago</h3>
+      <ul>
+        <li>Efectivo o transferencia bancaria: precio de contado.</li>
+        <li>Tarjeta de crédito o débito y cuotas: precio regular.</li>
+        <li>Cuotas con BAC y Banco Agrícola hasta 12 meses, Promerica hasta 24 y Banco Cuscatlán hasta 36 meses.</li>
+      </ul>
+      <button class="btn btn-sec" type="button" data-cuotas="1" style="margin-top:6px">Calcular mis cuotas</button>
+    </div>
+    <div class="bloque">
+      <h3>📍 Visítanos</h3>
+      <p><b>7a Av. Norte 2-9, Santa Tecla, La Libertad</b></p>
+      <p>Lunes a sábado, 8:00 a.m. a 5:00 p.m.</p>
+      <a class="mapa" href="https://www.google.com/maps/search/?api=1&query=7a%20Avenida%20Norte%202-9%20Santa%20Tecla%20La%20Libertad" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="bloque">
+      <h3>💬 ¿No encuentras tu modelo?</h3>
+      <p>Escríbenos el modelo que buscas o tu presupuesto y te ayudamos a encontrar la mejor opción.</p>
+      <a class="btn btn-wa" id="waInfo" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+  </section>
+  <p class="estado" id="estado"></p>
+</main>
+
+<footer>
+  <div class="dentro">
+    <p><b>TECNOSHOPSV</b> · Venta y servicio técnico de celulares</p>
+    <p>7a Av. Norte 2-9, Santa Tecla · Lunes a sábado 8 a.m. – 5 p.m. · WhatsApp <a id="waPie" target="_blank" rel="noopener">7001-2323</a></p>
+    <p style="opacity:.6">Imágenes de referencia. Precios y disponibilidad sujetos a cambio; confirma por WhatsApp antes de comprar.</p>
+  </div>
+</footer>
+
+<a class="flotante" id="waFlot" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2.1.7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.1-.2z"/></svg>
+</a>
+
+<div class="barra-pedido" id="barraPedido" hidden>
+  <div>Tu pedido: <b id="bpN">0</b> · <b id="bpT">$0.00</b></div>
+  <button id="verPedido" type="button">Ver y enviar</button>
+</div>
+
+<!-- Detalle de un modelo -->
+<div class="fondo-modal" id="modalDet" hidden><div class="modal" role="dialog" aria-labelledby="detTit">
+  <div class="modal-cab"><h3 id="detTit"></h3><button class="cerrar" data-cerrar="modalDet" aria-label="Cerrar">×</button></div>
+  <div class="modal-cuerpo" id="detCuerpo"></div>
+</div></div>
+
+<!-- Calculadora de cuotas -->
+<div class="fondo-modal" id="modalCuotas" hidden><div class="modal" role="dialog" aria-labelledby="cuoTit">
+  <div class="modal-cab"><h3 id="cuoTit">Calcula tus cuotas<small id="cuoSub">Elige el equipo, tu banco y el plazo</small></h3><button class="cerrar" data-cerrar="modalCuotas" aria-label="Cerrar">×</button></div>
+  <div class="modal-cuerpo">
+    <label class="campo"><span>Equipo</span><select id="cuoEquipo"></select></label>
+    <label class="campo"><span>Banco</span><select id="cuoBanco"></select></label>
+    <label class="campo"><span>Plazo</span><select id="cuoPlazo"></select></label>
+    <div class="resultado" id="cuoRes"></div>
+    <p class="aviso-peq">Cuota aproximada, sujeta a la aprobación del banco emisor de tu tarjeta.</p>
+  </div>
+</div></div>
+
+<!-- Pedido -->
+<div class="fondo-modal" id="modalPedido" hidden><div class="modal" role="dialog" aria-labelledby="pedTit">
+  <div class="modal-cab"><h3 id="pedTit">Tu pedido</h3><button class="cerrar" data-cerrar="modalPedido" aria-label="Cerrar">×</button></div>
+  <div class="modal-cuerpo">
+    <div id="pedLista"></div>
+    <label class="campo"><span>¿Cómo vas a pagar?</span></label>
+    <div class="opciones" id="pedPago">
+      <label class="opcion"><input type="radio" name="pago" value="contado" checked><div><b>Efectivo o transferencia</b><small>Precio de contado</small></div></label>
+      <label class="opcion"><input type="radio" name="pago" value="tarjeta"><div><b>Tarjeta de crédito o débito</b><small>Precio regular, en un solo pago</small></div></label>
+      <label class="opcion"><input type="radio" name="pago" value="cuotas"><div><b>Cuotas con tarjeta</b><small>Precio regular, elige banco y plazo</small></div></label>
+    </div>
+    <div id="pedCuotas" hidden>
+      <label class="campo"><span>Banco</span><select id="pedBanco"></select></label>
+      <label class="campo"><span>Plazo</span><select id="pedPlazo"></select></label>
+    </div>
+    <label class="campo"><span>¿Cómo lo recibes?</span></label>
+    <div class="opciones" id="pedEntrega">
+      <label class="opcion"><input type="radio" name="entrega" value="tienda" checked><div><b>Retiro en tienda</b><small>Santa Tecla · lunes a sábado 8 a.m. – 5 p.m.</small></div></label>
+      <label class="opcion"><input type="radio" name="entrega" value="motorista"><div><b>Motorista personalizado</b><small>Llega el mismo día · costo según la zona</small></div></label>
+      <label class="opcion"><input type="radio" name="entrega" value="c807"><div><b>Envío C807 Express ($3.50)</b><small>Llega al día siguiente · sábado llega el lunes</small></div></label>
+    </div>
+    <label class="campo"><span>Tu nombre</span><input id="pedNombre" type="text" placeholder="Nombre y apellido" autocomplete="name"></label>
+    <label class="campo" id="pedDirCampo" hidden><span>Dirección y municipio</span><input id="pedDir" type="text" placeholder="Dirección, municipio y departamento" autocomplete="street-address"></label>
+    <div class="totales" id="pedTotales"></div>
+  </div>
+  <div class="modal-pie">
+    <button class="enviar" id="enviarPedido" type="button">Enviar pedido por WhatsApp</button>
+    <button class="vaciar" id="vaciarPedido" type="button">Vaciar pedido</button>
+  </div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script src="fotos.js"></script>
+<script>
+// ===== Configuración =====
+var API = 'https://script.google.com/macros/s/AKfycbweF6GVeLUBF6zIiUuPS6CsVSzKyabDV1kHrXgehpmQKnXVa40yqGPw6ltA3fjebQCLxw/exec?fn=tienda';
+var WHATSAPP = '50370012323';
+var ENVIO_C807 = 3.5;
+var BANCOS = [ { n: 'BAC', max: 12 }, { n: 'Banco Agrícola', max: 12 }, { n: 'Banco Cuscatlán', max: 36 }, { n: 'Banco Promerica', max: 24 } ];
+var PLAZOS = [3, 6, 9, 12, 18, 24, 36];
+var GUARDA = 'ts_tienda_datos', GUARDA_PED = 'ts_tienda_pedido';
+var FOTOS = window.FOTOS || {};
+var COLORES = { negro:'#222', blanco:'#f5f5f5', azul:'#3b6fd8', celeste:'#a9d4f5', verde:'#4c9a6a', rojo:'#d23b3b', rosado:'#f3b6c9', rosa:'#f3b6c9',
+  morado:'#8e6cc4', lila:'#c7b3e6', amarillo:'#f5d442', gris:'#8c8c8c', plata:'#d9d9d9', plateado:'#d9d9d9', dorado:'#e5c77a', oro:'#e5c77a',
+  grafito:'#4a4a4a', titanio:'#b9b2a6', natural:'#c9c1b3', burgundy:'#7a1f33', crema:'#efe6d2', medianoche:'#1d2333', 'blanco estelar':'#f1efe8' };
+
+// ===== Utilidades =====
+var $ = function(id){ return document.getElementById(id); };
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+function dinero(n){ return '$' + (Math.round(n * 100) / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function norm(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim(); }
+function leer(k, d){ try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
+function guardar(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+function linkWA(t){ return 'https://wa.me/' + WHATSAPP + (t ? '?text=' + encodeURIComponent(t) : ''); }
+var tt; function aviso(t){ var el = $('toast'); el.textContent = t; el.classList.add('ver'); clearTimeout(tt); tt = setTimeout(function(){ el.classList.remove('ver'); }, 2400); }
+function colorDe(c){ var n = norm(c); if (COLORES[n]) return COLORES[n]; var k = Object.keys(COLORES).find(function(x){ return n.indexOf(x) >= 0; }); return k ? COLORES[k] : '#ccc'; }
+function marcaDe(m){ var n = norm(m); return n.indexOf('iphone') >= 0 ? 'iphone' : (n.indexOf('samsung') >= 0 || /^(s|z|a|note)\d/.test(n) ? 'samsung' : 'otro'); }
+var ICONO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10.5 18.8h3"/></svg>';
+function fotoDe(m){
+  var n = norm(m), k = '';
+  if (n.indexOf('flip') >= 0 || n.indexOf('fold') >= 0) k = FOTOS.flip ? 'flip' : 'samsung';
+  else if (marcaDe(m) === 'iphone') k = 'iphone';
+  else if (marcaDe(m) === 'samsung') k = 'samsung';
+  return FOTOS[k] ? '<img src="' + FOTOS[k] + '" alt="" loading="lazy">' : ICONO;
+}
+// Orden de los modelos: marca, luego número (12, 13, 14…) y variante
+function claveOrden(m){
+  var n = norm(m), num = parseFloat((n.match(/\d+/) || ['0'])[0]);
+  var v = /pro max|ultra/.test(n) ? 3 : /pro|plus/.test(n) ? 2 : /flip|fold/.test(n) ? 4 : 1;
+  return (marcaDe(m) === 'iphone' ? '1' : '2') + String(1000 + num) + v + n;
+}
+
+// ===== Estado =====
+var items = [];            // equipos tal como vienen del inventario
+var modelos = [];          // agrupados por modelo + capacidad
+var porId = {};
+var vista = { q: '', marca: '', orden: 'modelo' };
+var pedido = leer(GUARDA_PED, {});
+
+function recibir(d){
+  if (!d || !d.items) return;
+  guardar(GUARDA, d);
+  items = d.items.map(function(x, i){
+    var it = { id: [x.m, x.g, x.c, x.k, x.b, x.p].join('|'), m: x.m, g: x.g, c: x.c, k: x.k, b: x.b, p: +x.p || 0, r: +x.r || 0, o: x.o || '', n: +x.n || 1 };
+    it.busca = norm([it.m, it.g, it.c, it.k].join(' '));
+    return it;
+  });
+  porId = {}; items.forEach(function(x){ porId[x.id] = x; });
+  // limpiar del pedido lo que ya no está disponible
+  Object.keys(pedido).forEach(function(id){ if (!porId[id]) delete pedido[id]; else pedido[id] = Math.min(pedido[id], porId[id].n); });
+  guardar(GUARDA_PED, pedido);
+  var g = {};
+  modelos = [];
+  items.forEach(function(x){
+    var k = x.m + ' ' + x.g;
+    if (!g[k]) { g[k] = { k: k, m: x.m, g: x.g, ops: [], marca: marcaDe(x.m) }; modelos.push(g[k]); }
+    g[k].ops.push(x);
+  });
+  modelos.forEach(function(md){
+    md.ops.sort(function(a, b){ return a.p - b.p; });
+    md.desde = md.ops.filter(function(o){ return o.p; }).map(function(o){ return o.p; })[0] || 0;
+    md.nuevo = md.ops.some(function(o){ return /nuevo|open box/i.test(o.k); });
+    md.unidades = md.ops.reduce(function(s, o){ return s + o.n; }, 0);
+    md.busca = norm(md.k + ' ' + md.ops.map(function(o){ return o.c + ' ' + o.k; }).join(' '));
+  });
+  pintar(); pintarPedido(); llenarCuotas();
+  $('estado').textContent = 'Inventario actualizado: ' + new Date(d.ahora || Date.now()).toLocaleString('es-SV', { dateStyle: 'medium', timeStyle: 'short' });
+}
+
+function cargar(){
+  fetch(API, { cache: 'no-store' }).then(function(r){ return r.json(); }).then(function(d){
+    if (d && d.items) recibir(d); else throw 0;
+  }).catch(function(){
+    if (!items.length) $('grid').innerHTML = '<div class="vacio" style="grid-column:1/-1">No se pudo cargar el inventario. <a href="' + linkWA('Hola, quiero ver los celulares disponibles') + '" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>.</div>';
+  });
+}
+
+// ===== Lista de equipos =====
+function visibles(){
+  var palabras = norm(vista.q).split(' ').filter(Boolean);
+  var lista = modelos.filter(function(md){
+    if (vista.marca && md.marca !== vista.marca) return false;
+    return palabras.every(function(p){ return md.busca.indexOf(p) >= 0; });
+  });
+  lista.sort(function(a, b){
+    if (vista.orden === 'menor') return (a.desde || 1e9) - (b.desde || 1e9);
+    if (vista.orden === 'mayor') return (b.desde || 0) - (a.desde || 0);
+    var x = claveOrden(a.m), y = claveOrden(b.m); return x < y ? -1 : x > y ? 1 : (parseInt(a.g) || 0) - (parseInt(b.g) || 0);
+  });
+  return lista;
+}
+function pintar(){
+  if (!modelos.length) return;
+  var lista = visibles();
+  var unidades = lista.reduce(function(s, m){ return s + m.unidades; }, 0);
+  $('resumen').textContent = lista.length + (lista.length === 1 ? ' modelo' : ' modelos') + ' · ' + unidades + (unidades === 1 ? ' equipo disponible' : ' equipos disponibles');
+  if (!lista.length) {
+    $('grid').innerHTML = '<div class="vacio" style="grid-column:1/-1">No tenemos ese modelo en este momento. <a href="' + linkWA('Hola, busco este celular: ' + vista.q) + '" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>, te avisamos cuando llegue.</div>';
+    return;
+  }
+  $('grid').innerHTML = lista.map(function(md){
+    var colores = []; md.ops.forEach(function(o){ if (colores.indexOf(o.c) < 0) colores.push(o.c); });
+    return '<button class="card" data-modelo="' + esc(md.k) + '">' +
+      '<div class="foto">' + fotoDe(md.m) + (md.nuevo ? '<span class="etq nuevo">NUEVO</span>' : (md.unidades <= 2 ? '<span class="etq">ÚLTIMOS</span>' : '')) + '</div>' +
+      '<div class="cuerpo"><h3>' + esc(md.m) + '</h3><span class="cap">' + esc(md.g) + ' · ' + colores.length + (colores.length === 1 ? ' color' : ' colores') + '</span>' +
+      '<div class="colores">' + colores.map(function(c){ return '<span class="punto" title="' + esc(c) + '" style="background:' + colorDe(c) + '"></span>'; }).join('') + '</div>' +
+      '<div class="desde">' + (md.desde ? 'Desde<b>' + dinero(md.desde) + '</b>' : '<b>Consultar</b>') + '</div></div></button>';
+  }).join('');
+}
+
+// ===== Detalle del modelo =====
+var modeloAbierto = null;
+function abrirModelo(k){
+  var md = modelos.find(function(x){ return x.k === k; }); if (!md) return;
+  modeloAbierto = k;
+  $('detTit').innerHTML = esc(md.m) + '<small>' + esc(md.g) + ' · liberado · 3 meses de garantía</small>';
+  $('detCuerpo').innerHTML = '<div class="foto det-foto">' + fotoDe(md.m) + '</div>' +
+    md.ops.map(function(o){
+      var n = pedido[o.id] || 0;
+      var acc = !o.p ? '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + linkWA('Hola, me interesa: ' + nombreEq(o)) + '">Consultar precio</a>'
+        : n ? '<span class="paso"><button data-menos="' + esc(o.id) + '" aria-label="Quitar">−</button><span>' + n + ' en pedido</span><button data-mas="' + esc(o.id) + '" aria-label="Agregar">+</button></span>'
+            : '<button class="btn btn-add" data-mas="' + esc(o.id) + '">Agregar al pedido</button>';
+      return '<div class="op"><div class="op-top"><div><div class="op-t"><span class="punto" style="display:inline-block;vertical-align:-2px;margin-right:6px;background:' + colorDe(o.c) + '"></span>' + esc(o.c) + '</div>' +
+        '<div class="op-s">Categoría ' + esc(o.k) + (o.b ? ' · Batería ' + esc(o.b) : '') + '</div>' +
+        (o.n <= 2 ? '<div class="quedan">' + (o.n === 1 ? 'Última unidad' : 'Quedan ' + o.n) + '</div>' : '') + '</div>' +
+        '<div class="precios">' + (o.p ? '<span class="pago-lbl">Efectivo o transferencia</span><b>' + dinero(o.p) + '</b>' + (o.r ? '<span>Tarjeta o cuotas: ' + dinero(o.r) + '</span>' : '') : '<b>Consultar</b>') + '</div></div>' +
+        (o.o ? '<div class="op-nota">📝 ' + esc(o.o) + '</div>' : '') +
+        '<div class="op-acc">' + acc + (o.r ? '<button class="btn btn-sec" data-cuotas-id="' + esc(o.id) + '">💳 Ver cuotas</button>' : '') + '</div></div>';
+    }).join('') +
+    '<p class="aviso-peq">Incluye cargador original (cable + cubo). Imagen de referencia; el color y la categoría son los indicados en cada opción.</p>';
+  $('modalDet').hidden = false;
+}
+function nombreEq(o){ return o.m + ' ' + o.g + ' ' + o.c + ' (Cat. ' + o.k + (o.b ? ', batería ' + o.b : '') + ')'; }
+
+// ===== Calculadora de cuotas =====
+function opcionesPlazo(sel, max, actual){
+  sel.innerHTML = PLAZOS.filter(function(p){ return p <= max; }).map(function(p){ return '<option value="' + p + '"' + (p === actual ? ' selected' : '') + '>' + p + ' meses</option>'; }).join('');
+  if (!sel.value) sel.value = String(Math.min(max, 12));
+}
+function llenarBancos(sel){ sel.innerHTML = BANCOS.map(function(b, i){ return '<option value="' + i + '">' + b.n + ' (hasta ' + b.max + ' meses)</option>'; }).join(''); }
+function llenarCuotas(){
+  var sel = $('cuoEquipo'), antes = sel.value;
+  var conPrecio = items.filter(function(o){ return o.r; }).sort(function(a, b){ return claveOrden(a.m) < claveOrden(b.m) ? -1 : 1; });
+  sel.innerHTML = conPrecio.map(function(o){ return '<option value="' + esc(o.id) + '">' + esc(o.m + ' ' + o.g + ' · ' + o.c + ' · ' + o.k) + '</option>'; }).join('');
+  if (antes && porId[antes]) sel.value = antes;
+  if (!$('cuoBanco').options.length) { llenarBancos($('cuoBanco')); $('cuoBanco').value = '2'; }
+  opcionesPlazo($('cuoPlazo'), BANCOS[+$('cuoBanco').value].max, +$('cuoPlazo').value || 12);
+  calcularCuotas();
+}
+function calcularCuotas(){
+  var o = porId[$('cuoEquipo').value]; var meses = +$('cuoPlazo').value || 12; var b = BANCOS[+$('cuoBanco').value];
+  if (!o) { $('cuoRes').innerHTML = 'Elige un equipo.'; return; }
+  $('cuoRes').innerHTML = '<div class="fila"><span>Precio con tarjeta o cuotas</span><b>' + dinero(o.r) + '</b></div>' +
+    '<div class="fila"><span>' + esc(b.n) + ' · ' + meses + ' meses</span></div>' +
+    '<div class="fila"><span>Cuota mensual aprox.</span><span class="grande">' + dinero(o.r / meses) + '</span></div>' +
+    '<div class="fila"><span>Pagando en efectivo o transferencia</span><b>' + dinero(o.p) + '</b></div>' +
+    '<div class="op-acc">' + (pedido[o.id] ? '' : '<button class="btn btn-add" data-mas="' + esc(o.id) + '">Agregar al pedido</button>') +
+    '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + linkWA('Hola, quiero el ' + nombreEq(o) + ' en ' + meses + ' cuotas con ' + b.n + ' (' + dinero(o.r) + ', aprox. ' + dinero(o.r / meses) + ' al mes).') + '">Consultar por WhatsApp</a></div>';
+}
+function abrirCuotas(id){
+  if (!items.length) return;
+  if (id && porId[id]) $('cuoEquipo').value = id;
+  calcularCuotas(); $('modalCuotas').hidden = false;
+}
+$('cuoEquipo').addEventListener('change', calcularCuotas);
+$('cuoBanco').addEventListener('change', function(){ opcionesPlazo($('cuoPlazo'), BANCOS[+this.value].max, +$('cuoPlazo').value); calcularCuotas(); });
+$('cuoPlazo').addEventListener('change', calcularCuotas);
+
+// ===== Pedido =====
+function cambiar(id, d){
+  var o = porId[id]; if (!o) return;
+  var n = Math.max(0, Math.min(o.n, (pedido[id] || 0) + d));
+  if (d > 0 && (pedido[id] || 0) >= o.n) aviso(o.n === 1 ? 'Solo hay 1 unidad disponible' : 'Solo hay ' + o.n + ' unidades disponibles');
+  if (n) pedido[id] = n; else delete pedido[id];
+  guardar(GUARDA_PED, pedido); pintarPedido();
+  if (modeloAbierto && !$('modalDet').hidden) abrirModelo(modeloAbierto);
+  if (!$('modalCuotas').hidden) calcularCuotas();
+  if (d > 0 && n === 1) aviso('Agregado a tu pedido');
+}
+function lineas(){ return Object.keys(pedido).map(function(id){ return porId[id] ? { o: porId[id], n: pedido[id] } : null; }).filter(Boolean); }
+function formaPago(){ var r = document.querySelector('input[name=pago]:checked'); return r ? r.value : 'contado'; }
+function entrega(){ var r = document.querySelector('input[name=entrega]:checked'); return r ? r.value : 'tienda'; }
+function totales(){
+  var ls = lineas(), regular = formaPago() !== 'contado';
+  var eq = ls.reduce(function(s, l){ return s + l.n * (regular ? l.o.r : l.o.p); }, 0);
+  var envio = entrega() === 'c807' ? ENVIO_C807 : 0;
+  return { ls: ls, regular: regular, eq: eq, envio: envio, total: eq + envio, n: ls.reduce(function(s, l){ return s + l.n; }, 0) };
+}
+function pintarPedido(){
+  var t = totales();
+  var contado = t.ls.reduce(function(s, l){ return s + l.n * l.o.p; }, 0);
+  $('barraPedido').hidden = !t.n; document.body.classList.toggle('con-pedido', !!t.n);
+  $('bpN').textContent = t.n + (t.n === 1 ? ' equipo' : ' equipos'); $('bpT').textContent = dinero(contado);
+  $('pedLista').innerHTML = t.ls.length ? t.ls.map(function(l){
+    return '<div class="linea"><div><div class="t">' + esc(l.o.m + ' ' + l.o.g) + '</div><div class="s">' + esc(l.o.c + ' · Cat. ' + l.o.k + (l.o.b ? ' · Batería ' + l.o.b : '')) + ' · ' + dinero(t.regular ? l.o.r : l.o.p) + ' c/u</div></div>' +
+      '<span class="paso"><button data-menos="' + esc(l.o.id) + '">−</button><span>' + l.n + '</span><button data-mas="' + esc(l.o.id) + '">+</button></span></div>';
+  }).join('') : '<p class="op-s" style="padding:14px 0">Tu pedido está vacío.</p>';
+  $('pedCuotas').hidden = formaPago() !== 'cuotas';
+  $('pedDirCampo').hidden = entrega() === 'tienda';
+  var cuota = '';
+  if (formaPago() === 'cuotas') { var meses = +$('pedPlazo').value || 12; cuota = '<div class="fila"><span>Cuota mensual aprox. (' + meses + ' meses)</span><b>' + dinero(t.total / meses) + '</b></div>'; }
+  $('pedTotales').innerHTML = '<div class="fila"><span>Equipos (' + (t.regular ? 'precio regular' : 'precio de contado') + ')</span><b>' + dinero(t.eq) + '</b></div>' +
+    (entrega() === 'c807' ? '<div class="fila"><span>Envío C807 Express</span><b>' + dinero(t.envio) + '</b></div>' : '') +
+    (entrega() === 'motorista' ? '<div class="fila"><span>Envío con motorista</span><span>según zona</span></div>' : '') +
+    '<div class="fila"><span>Total</span><b>' + dinero(t.total) + '</b></div>' + cuota;
+  if (!t.ls.length) $('modalPedido').hidden = true;
+}
+function fechaLlegada(tipo){
+  var d = new Date(), dia = d.getDay();
+  if (tipo === 'motorista') return 'hoy';
+  if (tipo === 'c807') { d.setDate(d.getDate() + (dia === 6 ? 2 : 1)); return d.toLocaleDateString('es-SV', { weekday: 'long', day: 'numeric', month: 'long' }); }
+  return '';
+}
+function enviarPedido(){
+  var t = totales(); if (!t.ls.length) return;
+  var nombre = $('pedNombre').value.trim(), dir = $('pedDir').value.trim(), ent = entrega(), pago = formaPago();
+  guardar('ts_tienda_cliente', { nombre: nombre, dir: dir });
+  var txtPago = pago === 'contado' ? 'Efectivo o transferencia' : pago === 'tarjeta' ? 'Tarjeta (un solo pago)' : 'Cuotas con ' + BANCOS[+$('pedBanco').value].n + ' a ' + $('pedPlazo').value + ' meses';
+  var txtEnt = ent === 'tienda' ? 'Retiro en tienda (Santa Tecla)' : ent === 'motorista' ? 'Motorista personalizado (llega hoy)' : 'C807 Express (llega el ' + fechaLlegada('c807') + ')';
+  var msg = 'Hola TecnoShopSV, quiero hacer este pedido' + (nombre ? ' (' + nombre + ')' : '') + ':\n\n' +
+    t.ls.map(function(l){ return '• ' + l.n + ' x ' + nombreEq(l.o) + ' — ' + dinero((t.regular ? l.o.r : l.o.p)) + ' c/u'; }).join('\n') +
+    '\n\n💳 Pago: ' + txtPago + '\n🚚 Entrega: ' + txtEnt + (ent !== 'tienda' && dir ? '\n📍 Dirección: ' + dir : '') +
+    (t.envio ? '\n📦 Envío: ' + dinero(t.envio) : '') +
+    '\n💵 Total: ' + dinero(t.total) + (ent === 'motorista' ? ' + envío según zona' : '') +
+    (pago === 'cuotas' ? '\n🗓️ Cuota aprox.: ' + dinero(t.total / (+$('pedPlazo').value || 12)) + ' al mes' : '');
+  window.open(linkWA(msg), '_blank');
+}
+$('verPedido').addEventListener('click', function(){ var c = leer('ts_tienda_cliente', {}); if (c.nombre && !$('pedNombre').value) $('pedNombre').value = c.nombre; if (c.dir && !$('pedDir').value) $('pedDir').value = c.dir; pintarPedido(); $('modalPedido').hidden = false; });
+$('vaciarPedido').addEventListener('click', function(){ pedido = {}; guardar(GUARDA_PED, pedido); pintarPedido(); });
+$('enviarPedido').addEventListener('click', enviarPedido);
+['pedPago', 'pedEntrega'].forEach(function(id){ $(id).addEventListener('change', pintarPedido); });
+llenarBancos($('pedBanco')); $('pedBanco').value = '2'; opcionesPlazo($('pedPlazo'), 36, 12);
+$('pedBanco').addEventListener('change', function(){ opcionesPlazo($('pedPlazo'), BANCOS[+this.value].max, +$('pedPlazo').value); pintarPedido(); });
+$('pedPlazo').addEventListener('change', pintarPedido);
+
+// ===== Eventos generales =====
+document.addEventListener('click', function(e){
+  var t = e.target;
+  var mas = t.closest('[data-mas]'); if (mas) { cambiar(mas.getAttribute('data-mas'), 1); return; }
+  var menos = t.closest('[data-menos]'); if (menos) { cambiar(menos.getAttribute('data-menos'), -1); return; }
+  var cid = t.closest('[data-cuotas-id]'); if (cid) { abrirCuotas(cid.getAttribute('data-cuotas-id')); return; }
+  var cu = t.closest('[data-cuotas]'); if (cu) { abrirCuotas(); return; }
+  var card = t.closest('[data-modelo]'); if (card) { abrirModelo(card.getAttribute('data-modelo')); return; }
+  var ce = t.closest('[data-cerrar]'); if (ce) { $(ce.getAttribute('data-cerrar')).hidden = true; return; }
+  if (t.classList.contains('fondo-modal')) { t.hidden = true; return; }
+  var chip = t.closest('[data-marca]'); if (chip) {
+    vista.marca = chip.getAttribute('data-marca');
+    Array.from(document.querySelectorAll('[data-marca]')).forEach(function(c){ c.classList.toggle('on', c === chip); });
+    pintar();
+  }
+});
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') Array.from(document.querySelectorAll('.fondo-modal')).forEach(function(m){ m.hidden = true; }); });
+var deb; $('q').addEventListener('input', function(e){ clearTimeout(deb); deb = setTimeout(function(){ vista.q = e.target.value.trim(); pintar(); }, 150); });
+$('orden').addEventListener('change', function(){ vista.orden = this.value; pintar(); });
+['waCab', 'waFlot', 'waInfo', 'waPie'].forEach(function(id){ $(id).href = linkWA('Hola TecnoShopSV, quiero información sobre un celular'); });
+
+// Abre al instante con la última copia guardada y se actualiza sola
+var copia = leer(GUARDA, null);
+if (copia) recibir(copia);
+cargar();
+window.addEventListener('focus', cargar);
+setInterval(function(){ if (!document.hidden) cargar(); }, 120000);
+</script>
+</body>
+</html>
