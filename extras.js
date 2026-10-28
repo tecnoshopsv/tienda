@@ -1,6 +1,6 @@
 // Gadgets y servicio técnico (datos: pestaña «Gadgets» y «TABLA DE PRECIOS»)
 (function(){
-  var SERVICIO = window.PAGINA === 'servicio';
+  var SERVICIO = window.PAGINA === 'servicio', GADGETS = window.PAGINA === 'gadgets';
   var API_EXTRAS = API.replace('fn=tienda', 'fn=extras');
   var GUARDA_EX = 'ts_tienda_extras';
   var ETQ = { 'bateria': 'Batería', 'baterias': 'Baterías', 'camara trasera': 'Cámara trasera', 'camara frontal': 'Cámara frontal',
@@ -41,14 +41,17 @@
     '.st-promo b{display:block;font-size:18px;margin-bottom:2px}.st-promo span{font-size:13px;opacity:.85}' +
     '.st-promo i{font-style:normal;background:#FFC52E;color:#2B0F4C;font-weight:800;border-radius:12px;padding:10px 16px;white-space:nowrap}' +
     'a.chip{text-decoration:none;display:inline-flex;align-items:center}' +
-    'body.pag-servicio .franja,body.pag-servicio .bancos,body.pag-servicio .barra,body.pag-servicio #resumen,body.pag-servicio #grid,' +
-    'body.pag-servicio #info,body.pag-servicio .barra-pedido,body.pag-servicio .estado{display:none!important}' +
-    'body.pag-servicio #secServicio{margin-top:8px}body.pag-servicio .st-sellos{display:none}';
+    'body.pag-aparte .franja,body.pag-aparte .bancos,body.pag-aparte .barra,body.pag-aparte #resumen,body.pag-aparte #grid,' +
+    'body.pag-aparte #info,body.pag-aparte .barra-pedido,body.pag-aparte .estado{display:none!important}' +
+    'body.pag-aparte .ex-sec{margin-top:8px}body.pag-servicio .st-sellos{display:none}' +
+    '.promos{display:grid;gap:12px;margin-top:34px}.promos .st-promo{margin-top:0}' +
+    '.st-promo.amarillo{background:linear-gradient(135deg,#FFC52E,#FFB000);color:#2B0F4C}.st-promo.amarillo i{background:#2B0F4C;color:#FFC52E}' +
+    '@media (min-width:700px){.promos{grid-template-columns:1fr 1fr}}';
   document.head.appendChild(st);
 
   // Botones en los filtros
   var orden = $('orden');
-  ['<button class="chip" data-ir="secGadgets">🎧 Gadgets</button>', '<a class="chip" href="/servicio">🔧 Servicio técnico</a>'].forEach(function(h){
+  ['<a class="chip" href="/gadgets">🎧 Gadgets</a>', '<a class="chip" href="/servicio">🔧 Servicio técnico</a>'].forEach(function(h){
     orden.insertAdjacentHTML('beforebegin', h);
   });
   document.addEventListener('click', function(e){
@@ -83,25 +86,37 @@
     '</section>';
   var info = $('info');
   var secG = cont.querySelector('#secGadgets'), secS = cont.querySelector('#secServicio');
-  if (SERVICIO) {
-    // Página aparte: solo servicio técnico
-    document.body.classList.add('pag-servicio');
-    document.title = 'Servicio técnico · TecnoShopSV Santa Tecla';
+  function heroAparte(etq, h1, p, sellos){
     var por = document.querySelector('.portada .dentro');
-    if (por) por.innerHTML = '<span class="cat-mes">SERVICIO TÉCNICO · SANTA TECLA</span>' +
-      '<h1>Reparamos tu celular, <span>con garantía.</span></h1>' +
-      '<p>Pantallas, baterías, puertos de carga, cámaras y más. iPhone, Samsung, Huawei, Motorola, Xiaomi, iPad, MacBook y otras marcas. Cotiza aquí y escríbenos por WhatsApp.</p>' +
-      '<div class="sellos"><span class="sello">✓ Garantía de 2 a 3 meses</span><span class="sello">⏱ Precio y tiempo en la cotización</span><span class="sello">📍 7a Av. Norte 2-9, Santa Tecla</span></div>' +
+    if (por) por.innerHTML = '<span class="cat-mes">' + etq + '</span><h1>' + h1 + '</h1><p>' + p + '</p>' +
+      '<div class="sellos">' + sellos.map(function(x){ return '<span class="sello">' + x + '</span>'; }).join('') + '</div>' +
       '<div class="mostrando"><a href="/" style="color:#FFC52E;font-weight:800">← Ver celulares a la venta</a><b id="mostrN" hidden></b></div>';
     var marca = document.querySelector('a.marca'); if (marca) marca.href = '/';
+  }
+  if (GADGETS) {
+    // Página aparte: solo gadgets
+    document.body.classList.add('pag-aparte', 'pag-gadgets');
+    document.title = 'Gadgets y accesorios · TecnoShopSV Santa Tecla';
+    heroAparte('GADGETS · TECNOSHOPSV', 'Gadgets y accesorios, <span>originales.</span>',
+      'Audífonos, cargadores, relojes y más. Paga en efectivo, transferencia o con tarjeta y recibe en todo El Salvador.',
+      ['💳 Tarjeta y cuotas', '🚚 Envíos a todo el país', '📍 7a Av. Norte 2-9, Santa Tecla']);
+    info.parentNode.insertBefore(secG, info);
+    secS.remove();
+  } else if (SERVICIO) {
+    // Página aparte: solo servicio técnico
+    document.body.classList.add('pag-aparte', 'pag-servicio');
+    document.title = 'Servicio técnico · TecnoShopSV Santa Tecla';
+    heroAparte('SERVICIO TÉCNICO · SANTA TECLA', 'Reparamos tu celular, <span>con garantía.</span>',
+      'Pantallas, baterías, puertos de carga, cámaras y más. iPhone, Samsung, Huawei, Motorola, Xiaomi, iPad, MacBook y otras marcas. Cotiza aquí y escríbenos por WhatsApp.',
+      ['✓ Garantía de 2 a 3 meses', '⏱ Precio y tiempo en la cotización', '📍 7a Av. Norte 2-9, Santa Tecla']);
     info.parentNode.insertBefore(secS, info);
     secG.remove();
   } else {
-    info.parentNode.insertBefore(secG, info);
-    var promo = document.createElement('a'); promo.className = 'st-promo'; promo.href = '/servicio';
-    promo.innerHTML = '<div><b>🔧 Servicio técnico</b><span>Pantallas, baterías, puertos de carga y más. Cotiza tu reparación con precio y tiempo.</span></div><i>Cotizar reparación →</i>';
-    info.parentNode.insertBefore(promo, info);
-    secS.remove();
+    var promos = document.createElement('div'); promos.className = 'promos';
+    promos.innerHTML = '<a class="st-promo amarillo" href="/gadgets"><div><b>🎧 Gadgets</b><span>Audífonos, cargadores, relojes y accesorios.</span></div><i>Ver gadgets →</i></a>' +
+      '<a class="st-promo" href="/servicio"><div><b>🔧 Servicio técnico</b><span>Pantallas, baterías, puertos de carga y más. Cotiza con precio y tiempo.</span></div><i>Cotizar reparación →</i></a>';
+    info.parentNode.insertBefore(promos, info);
+    secG.remove(); secS.remove();
   }
 
   var datos = leer(GUARDA_EX, null);
