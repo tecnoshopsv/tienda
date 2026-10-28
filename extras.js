@@ -30,7 +30,7 @@
     '.st-op{display:flex;justify-content:space-between;align-items:center;gap:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 12px;cursor:pointer}' +
     '.st-op input{accent-color:#FFC52E;width:18px;height:18px;flex:none}' +
     '.st-op .n{flex:1;font-size:14px;font-weight:600}' +
-    '.st-op .v{font-size:13px;font-weight:800;background:#FFC52E;color:#2B0F4C;border-radius:8px;padding:4px 8px;white-space:nowrap}' +
+    '.st-op .v{font-size:13px;font-weight:800;background:#FFC52E;color:#2B0F4C;border-radius:8px;padding:4px 8px;max-width:58%;text-align:right;line-height:1.3}' +
     '.st-op:has(input:checked){background:rgba(255,197,46,.16);border-color:#FFC52E}' +
     '.st-acc{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}' +
     '.st-acc .btn{font-size:14px}.st-nota{font-size:12px;opacity:.75;margin-top:10px}' +
