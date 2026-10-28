@@ -34,7 +34,8 @@ main{padding-top:6px}
 .seccion h2{margin:0;font-size:14px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:#2B0F4C}
 .seccion span{font-size:12px;color:#8A8296;letter-spacing:.5px;text-transform:uppercase}
 .grid{margin-bottom:6px}
-.prod{background:#fff;border:1px solid #E8E4EE;border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.prod{background:#fff;border:1px solid #E8E4EE;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,box-shadow .2s,transform .2s}
+@media (hover:hover){.prod:hover{border-color:#7B3FC4;box-shadow:0 0 0 2px rgba(123,63,196,.35),0 12px 28px rgba(43,15,76,.14);transform:translateY(-3px)}}
 .prod .foto{background:#F5F4F8;cursor:pointer}
 .prod .foto img{clip-path:inset(0 27% 13% 0);transform:translate(13%,6%)}
 .etqs{position:absolute;top:10px;left:10px;display:flex;gap:4px;flex-wrap:wrap}
