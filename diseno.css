@@ -47,8 +47,8 @@ main{padding-top:6px}
 .prod .colores{margin:6px 0 8px}
 .tag-precio{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.5px;color:#fff;background:#4B1F7A;border-radius:6px;padding:3px 8px;margin-bottom:6px}
 .fila-precio{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.precio-neg{background:#17141C;color:#fff;border-radius:10px;padding:6px 12px;font-weight:900;font-size:19px;line-height:1.1}
-.precio-neg small{font-size:11px;font-weight:700;opacity:.7;margin-right:2px}
+.precio-neg{background:#FFC52E;color:#2B0F4C;border-radius:10px;padding:6px 12px;font-weight:900;font-size:19px;line-height:1.1}
+.precio-neg small{font-size:11px;font-weight:800;opacity:.75;margin-right:2px;color:#2B0F4C}
 .btn-int{border:0;background:#1FA855;color:#fff;font-weight:800;font-size:12px;letter-spacing:.4px;text-transform:uppercase;border-radius:10px;padding:9px 12px;cursor:pointer}
 .nota-p{font-size:12px;color:#6B6575;margin-top:8px;line-height:1.35}
 .nota-p b{color:#17141C}
