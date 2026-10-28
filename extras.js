@@ -1,5 +1,6 @@
 // Gadgets y servicio técnico (datos: pestaña «Gadgets» y «TABLA DE PRECIOS»)
 (function(){
+  var SERVICIO = window.PAGINA === 'servicio';
   var API_EXTRAS = API.replace('fn=tienda', 'fn=extras');
   var GUARDA_EX = 'ts_tienda_extras';
   var ETQ = { 'bateria': 'Batería', 'baterias': 'Baterías', 'camara trasera': 'Cámara trasera', 'camara frontal': 'Cámara frontal',
@@ -35,12 +36,19 @@
     '.st-acc{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}' +
     '.st-acc .btn{font-size:14px}.st-nota{font-size:12px;opacity:.75;margin-top:10px}' +
     '@media (max-width:520px){.st-fila{grid-template-columns:1fr}.st-lista{grid-template-columns:1fr 1fr}}' +
-    '@media (min-width:700px){.st-lista{grid-template-columns:repeat(4,1fr)}}';
+    '@media (min-width:700px){.st-lista{grid-template-columns:repeat(4,1fr)}}' +
+    '.st-promo{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:34px;background:linear-gradient(135deg,#1E0838,#4B1F7A);color:#fff;border-radius:20px;padding:18px 20px;text-decoration:none}' +
+    '.st-promo b{display:block;font-size:18px;margin-bottom:2px}.st-promo span{font-size:13px;opacity:.85}' +
+    '.st-promo i{font-style:normal;background:#FFC52E;color:#2B0F4C;font-weight:800;border-radius:12px;padding:10px 16px;white-space:nowrap}' +
+    'a.chip{text-decoration:none;display:inline-flex;align-items:center}' +
+    'body.pag-servicio .franja,body.pag-servicio .bancos,body.pag-servicio .barra,body.pag-servicio #resumen,body.pag-servicio #grid,' +
+    'body.pag-servicio #info,body.pag-servicio .barra-pedido,body.pag-servicio .estado{display:none!important}' +
+    'body.pag-servicio #secServicio{margin-top:8px}body.pag-servicio .st-sellos{display:none}';
   document.head.appendChild(st);
 
   // Botones en los filtros
   var orden = $('orden');
-  ['<button class="chip" data-ir="secGadgets">🎧 Gadgets</button>', '<button class="chip" data-ir="secServicio">🔧 Servicio técnico</button>'].forEach(function(h){
+  ['<button class="chip" data-ir="secGadgets">🎧 Gadgets</button>', '<a class="chip" href="/servicio">🔧 Servicio técnico</a>'].forEach(function(h){
     orden.insertAdjacentHTML('beforebegin', h);
   });
   document.addEventListener('click', function(e){
@@ -74,7 +82,27 @@
     '<p class="st-nota">Precios de referencia, sujetos a revisión del equipo. Si tu modelo o la falla no aparece, escríbenos y te cotizamos.</p></div>' +
     '</section>';
   var info = $('info');
-  while (cont.firstChild) info.parentNode.insertBefore(cont.firstChild, info);
+  var secG = cont.querySelector('#secGadgets'), secS = cont.querySelector('#secServicio');
+  if (SERVICIO) {
+    // Página aparte: solo servicio técnico
+    document.body.classList.add('pag-servicio');
+    document.title = 'Servicio técnico · TecnoShopSV Santa Tecla';
+    var por = document.querySelector('.portada .dentro');
+    if (por) por.innerHTML = '<span class="cat-mes">SERVICIO TÉCNICO · SANTA TECLA</span>' +
+      '<h1>Reparamos tu celular, <span>con garantía.</span></h1>' +
+      '<p>Pantallas, baterías, puertos de carga, cámaras y más. iPhone, Samsung, Huawei, Motorola, Xiaomi, iPad, MacBook y otras marcas. Cotiza aquí y escríbenos por WhatsApp.</p>' +
+      '<div class="sellos"><span class="sello">✓ Garantía de 2 a 3 meses</span><span class="sello">⏱ Precio y tiempo en la cotización</span><span class="sello">📍 7a Av. Norte 2-9, Santa Tecla</span></div>' +
+      '<div class="mostrando"><a href="/" style="color:#FFC52E;font-weight:800">← Ver celulares a la venta</a><b id="mostrN" hidden></b></div>';
+    var marca = document.querySelector('a.marca'); if (marca) marca.href = '/';
+    info.parentNode.insertBefore(secS, info);
+    secG.remove();
+  } else {
+    info.parentNode.insertBefore(secG, info);
+    var promo = document.createElement('a'); promo.className = 'st-promo'; promo.href = '/servicio';
+    promo.innerHTML = '<div><b>🔧 Servicio técnico</b><span>Pantallas, baterías, puertos de carga y más. Cotiza tu reparación con precio y tiempo.</span></div><i>Cotizar reparación →</i>';
+    info.parentNode.insertBefore(promo, info);
+    secS.remove();
+  }
 
   var datos = leer(GUARDA_EX, null);
 
@@ -132,15 +160,15 @@
     t += marcados.length ? ':\n' + marcados.join('\n') : '.';
     $('stWa').href = linkWA(t);
   }
-  $('stMarca').addEventListener('change', function(){ $('stModelo').value = ''; pintarModelos(); });
-  $('stModelo').addEventListener('change', pintarServicios);
-  $('stServ').addEventListener('change', actualizarWa);
+  var hayServ = !!$('stMarca');
+  if (hayServ) $('stMarca').addEventListener('change', function(){ $('stModelo').value = ''; pintarModelos(); });
+  if (hayServ) { $('stModelo').addEventListener('change', pintarServicios); $('stServ').addEventListener('change', actualizarWa); }
 
-  function recibirEx(d){ if (!d) return; datos = d; guardar(GUARDA_EX, d); pintarGadgets(); pintarMarcas(); }
+  function recibirEx(d){ if (!d) return; datos = d; guardar(GUARDA_EX, d); if ($('gadGrid')) pintarGadgets(); if (hayServ) pintarMarcas(); }
   function cargarEx(){
     fetch(API_EXTRAS, { cache: 'no-store' }).then(function(r){ return r.json(); }).then(function(d){ if (d && (d.gadgets || d.servicio)) recibirEx(d); }).catch(function(){});
   }
-  pintarGadgets(); pintarMarcas();
+  if ($('gadGrid')) pintarGadgets(); if (hayServ) pintarMarcas();
   if (datos) recibirEx(datos);
   cargarEx();
   setInterval(function(){ if (!document.hidden) cargarEx(); }, 300000);
