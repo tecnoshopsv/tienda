@@ -60,6 +60,14 @@ main{padding-top:6px}
 .cuotas-acc ul{list-style:none;margin:0;padding:0 12px 10px}
 .cuotas-acc li{display:flex;justify-content:space-between;gap:6px;font-size:13px;padding:4px 0;border-top:1px dashed #EEE9F3;white-space:nowrap}
 .cuotas-acc li b{color:#17141C}
+.cuotas-acc li span small{display:block;font-size:10px;color:#8A8296;white-space:normal}
+.bancos{background:#fff;border-bottom:1px solid #ECE8F1;padding:10px 0}
+.bancos .dentro{display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.bancos .dentro::-webkit-scrollbar{display:none}
+.bancos-t{font-size:12px;font-weight:800;color:#2B0F4C;white-space:nowrap}
+.banco{flex:none;display:inline-flex;flex-direction:column;border:1px solid #E8E4EE;border-radius:12px;padding:6px 12px;background:#FAF9FC;line-height:1.2}
+.banco b{font-size:13px;color:#17141C}
+.banco small{font-size:11px;color:#6B6575}
 .arriba{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:35;width:46px;height:46px;border-radius:50%;border:0;background:linear-gradient(135deg,#4B1F7A,#7B3FC4);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.2);display:none}
 .arriba.ver{display:block}
 body.con-pedido .arriba{bottom:calc(76px + env(safe-area-inset-bottom))}
@@ -70,9 +78,11 @@ body.con-pedido .arriba{bottom:calc(76px + env(safe-area-inset-bottom))}
   .precio-neg{font-size:16px;padding:5px 9px}
   .btn-int{width:100%}
   .btn-ubi{display:none}
+  .bancos .dentro{display:grid;grid-template-columns:1fr 1fr;overflow:visible}
+  .bancos-t{grid-column:1/-1}
   .marca small{display:none}
   .cuotas-acc summary{padding:8px 10px;font-size:12px}
   .cuotas-acc ul{padding:0 10px 8px}
-  .cuotas-acc li{font-size:12px}
+  .cuotas-acc li{font-size:12px;align-items:flex-start}
   .prod h3{font-size:15px}
 }
