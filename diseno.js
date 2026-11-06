@@ -36,6 +36,27 @@
     '<button class="chip" data-marca="semi">⭐ Seminuevos</button><button class="chip" data-cuotas="1">💳 Cuotas</button>';
   $('filtros').appendChild(orden);
 
+  // Fotos de referencia por modelo y color (carpeta /fotos). Para agregar una: subir "modelo--color.webp" y anotarla aquí.
+  var FOTOS_COLOR = ('iphone-11--blanco iphone-11--negro iphone-11--morado iphone-11-pro-max--blanco iphone-11-pro-max--verde iphone-11-pro-max--negro iphone-11-pro-max--dorado iphone-12--verde iphone-12--azul iphone-12--negro iphone-13--verde iphone-13--celeste iphone-13--blanco iphone-13--negro iphone-13--rojo iphone-13-pro--celeste iphone-13-pro--blanco iphone-13-pro--dorado iphone-13-pro--verde iphone-13-pro--negro iphone-13-pro-max--negro iphone-14--negro iphone-14--blanco iphone-14-pro--negro iphone-14-pro-max--negro iphone-15--amarillo iphone-15-plus--rosado iphone-15-pro--negro iphone-15-pro-max--azul iphone-16-pro--dorado iphone-16-pro-max--gris iphone-16-pro-max--negro iphone-16-pro-max--dorado iphone-17-pro-max--azul iphone-17-pro-max--anaranjado iphone-17-pro-max--blanco samsung-s21-ultra--silver samsung-s21-ultra--negro samsung-s22-ultra--burgundy samsung-s22-ultra--verde samsung-s22-ultra--negro samsung-s22-ultra--blanco samsung-s23-ultra--negro samsung-s25--celeste samsung-s25-ultra--gris samsung-s26--negro').split(' ');
+  function slug(s){ return norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  window.fotoColor = function(m, c){ var f = slug(m) + '--' + slug(c); return FOTOS_COLOR.indexOf(f) >= 0 ? 'fotos/' + f + '.webp' : ''; };
+  var fotoBase = window.fotoDe;
+  window.fotoDe = function(m, c){
+    var src = c ? fotoColor(m, c) : '';
+    if (!c) { var md = modelos.find(function(x){ return x.m === m; }); if (md) md.ops.some(function(o){ return (src = fotoColor(m, o.c)); }); }
+    return src ? '<img class="fc" src="' + src + '" alt="' + esc(m + (c ? ' ' + c : '')) + '" loading="lazy">' : fotoBase(m);
+  };
+  var est = document.createElement('style');
+  est.textContent = '.prod .foto img.fc,.det-foto img.fc{clip-path:none;transform:none;padding:7%;box-sizing:border-box}' +
+    '.prod .punto.sel{box-shadow:0 0 0 2px #fff,0 0 0 4px #7B3FC4}.prod .punto[data-foto]{cursor:pointer}';
+  document.head.appendChild(est);
+  document.addEventListener('click', function(e){
+    var p = e.target.closest && e.target.closest('.prod .punto[data-foto]'); if (!p) return;
+    var prod = p.closest('.prod'), img = prod.querySelector('.foto img');
+    if (img) { img.className = 'fc'; img.src = p.getAttribute('data-foto'); img.alt = p.title; }
+    prod.querySelectorAll('.punto').forEach(function(x){ x.classList.toggle('sel', x === p); });
+  });
+
   function esNuevo(o){ return /nuevo|open box/i.test(o.k); }
   var NOMBRE = { iphone: 'iPhone', samsung: 'Samsung', otro: 'Otras marcas' };
 
@@ -74,10 +95,11 @@
           [3, 6, 12, 18, 24, 36].map(function(m){ var bs = BANCOS.filter(function(b){ return b.max >= m; }).map(function(b){ return b.n.replace('Banco ', ''); }); return '<li><span>' + m + ' meses' + (bs.length < BANCOS.length ? '<small>Solo ' + esc(bs.join(' y ')) + '</small>' : '') + '</span><b>' + dinero(o.r / m) + '</b></li>'; }).join('') +
           '</ul></details>' : '')
       : '<div class="fila-precio"><button class="btn-int" data-modelo="' + k + '">💬 Consultar</button></div>';
-    return '<div class="prod"><div class="foto" data-modelo="' + k + '">' + fotoDe(md.m) + '<div class="etqs">' + etq + '</div></div>' +
+    var c0 = colores.find(function(c){ return fotoColor(md.m, c); });
+    return '<div class="prod"><div class="foto" data-modelo="' + k + '">' + fotoDe(md.m, c0) + '<div class="etqs">' + etq + '</div></div>' +
       '<div class="cuerpo"><span class="lbl">' + NOMBRE[md.marca] + '</span><h3 data-modelo="' + k + '">' + esc(md.m) + '</h3>' +
       '<span class="cap">' + esc(md.g) + ' · Cat. ' + esc(cats.join(' / ')) + '</span>' +
-      '<div class="colores">' + colores.map(function(c){ return '<span class="punto" title="' + esc(c) + '" style="background:' + colorDe(c) + '"></span>'; }).join('') + '</div>' +
+      '<div class="colores">' + colores.map(function(c){ var f = fotoColor(md.m, c); return '<span class="punto' + (c === c0 ? ' sel' : '') + '" title="' + esc(c) + '"' + (f ? ' data-foto="' + f + '" role="button" tabindex="0"' : '') + ' style="background:' + colorDe(c) + '"></span>'; }).join('') + '</div>' +
       precio + '</div></div>';
   }
 
