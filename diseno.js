@@ -48,14 +48,26 @@
   };
   var est = document.createElement('style');
   est.textContent = '.prod .foto img.fc,.det-foto img.fc{clip-path:none;transform:none;padding:7%;box-sizing:border-box}' +
-    '.prod .punto.sel{box-shadow:0 0 0 2px #fff,0 0 0 4px #7B3FC4}.prod .punto[data-foto]{cursor:pointer}';
+    '.prod .punto.sel{box-shadow:0 0 0 2px #fff,0 0 0 4px #7B3FC4}.prod .punto[data-foto]{cursor:pointer}' +
+    '#modalDet .op{transition:border-color .15s,box-shadow .15s}#modalDet .op.sel{border-color:#7B3FC4;box-shadow:0 0 0 1px #7B3FC4}';
   document.head.appendChild(est);
-  document.addEventListener('click', function(e){
-    var p = e.target.closest && e.target.closest('.prod .punto[data-foto]'); if (!p) return;
+  // Al pasar el cursor sobre un color, la foto de la tarjeta cambia a ese color
+  document.addEventListener('mouseover', function(e){
+    var p = e.target.closest && e.target.closest('.prod .punto[data-foto]'); if (!p || p.classList.contains('sel')) return;
     var prod = p.closest('.prod'), img = prod.querySelector('.foto img');
     if (img) { img.className = 'fc'; img.src = p.getAttribute('data-foto'); img.alt = p.title; }
     prod.querySelectorAll('.punto').forEach(function(x){ x.classList.toggle('sel', x === p); });
   });
+  // Dentro del modelo: al pasar el cursor o tocar una opción, la foto muestra ese color
+  function fotoOpcion(e){
+    var op = e.target.closest && e.target.closest('#modalDet .op'); if (!op || op.classList.contains('sel')) return;
+    var md = modelos.find(function(x){ return x.k === modeloAbierto; }), t = op.querySelector('.op-t'); if (!md || !t) return;
+    var src = fotoColor(md.m, t.textContent.trim()), img = document.querySelector('#modalDet .det-foto img');
+    document.querySelectorAll('#modalDet .op').forEach(function(x){ x.classList.toggle('sel', x === op); });
+    if (src && img) { img.className = 'fc'; img.src = src; img.alt = md.m + ' ' + t.textContent.trim(); }
+  }
+  document.addEventListener('mouseover', fotoOpcion);
+  document.addEventListener('click', fotoOpcion);
 
   function esNuevo(o){ return /nuevo|open box/i.test(o.k); }
   var NOMBRE = { iphone: 'iPhone', samsung: 'Samsung', otro: 'Otras marcas' };
