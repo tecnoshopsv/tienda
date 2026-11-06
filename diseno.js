@@ -86,12 +86,13 @@
     filas.forEach(function(f, i){ if (ls[i] && !f.querySelector('.mini')) { f.classList.add('con-mini'); f.insertAdjacentHTML('afterbegin', miniDe(ls[i].o)); } });
   };
   var calcularCuotasBase = window.calcularCuotas;
-  window.calcularCuotas = function(){
-    calcularCuotasBase();
+  function miniCuotas(){
     var o = porId[$('cuoEquipo').value], res = $('cuoRes'), box = $('cuoMini');
     if (!box) { box = document.createElement('div'); box.id = 'cuoMini'; box.className = 'cuo-eq'; res.parentNode.insertBefore(box, res); }
     box.innerHTML = o ? miniDe(o) + '<div><b>' + esc(o.m + ' ' + o.g) + '</b><div class="op-s">' + esc(o.c + ' · Cat. ' + o.k) + '</div></div>' : '';
-  };
+  }
+  window.calcularCuotas = function(){ calcularCuotasBase(); miniCuotas(); };
+  $('cuoEquipo').addEventListener('change', miniCuotas);
   if (typeof pintarPedido === 'function') pintarPedido();
 
   function esNuevo(o){ return /nuevo|open box/i.test(o.k); }
