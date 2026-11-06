@@ -18,14 +18,14 @@
     '<h1>Tu próximo celular, <span>garantizado.</span></h1>' +
     '<p>iPhone y Samsung nuevos y seminuevos, 100% testeados y liberados. Precios reales, 3 meses de garantía y envíos a todo El Salvador.</p>' +
     '<div class="sellos"><span class="sello">✓ 3 meses de garantía</span><span class="sello">🔌 Cargador original</span>' +
-    '<span class="sello">💳 Tarjeta y cuotas</span><span class="sello">🚚 Envíos a todo el país</span></div>' +
+    '<span class="sello">💳 Tasa 0% con tarjeta</span><span class="sello">🚚 Envíos a todo el país</span></div>' +
     '<div class="mostrando">Mostrando <b id="mostrN">…</b> equipos disponibles</div>';
   var fr = document.createElement('div'); fr.className = 'franja';
-  fr.innerHTML = '<div class="dentro">💵 Precios de contado al pagar en <b>efectivo o transferencia</b> · Con tarjeta o en cuotas aplica el precio regular</div>';
+  fr.innerHTML = '<div class="dentro">💵 Precios de contado al pagar en <b>efectivo o transferencia</b> · Con tarjeta o a Tasa 0% aplica el precio regular</div>';
   document.querySelector('.portada').after(fr);
   // Bancos participantes en cuotas
   var bn = document.createElement('div'); bn.className = 'bancos';
-  bn.innerHTML = '<div class="dentro"><span class="bancos-t">💳 Cuotas con:</span>' +
+  bn.innerHTML = '<div class="dentro"><span class="bancos-t">💳 Tasa 0% con:</span>' +
     BANCOS.map(function(b){ return '<span class="banco"><b>' + esc(b.n) + '</b><small>hasta ' + b.max + ' meses</small></span>'; }).join('') + '</div>';
   fr.after(bn);
 
@@ -33,7 +33,7 @@
   var orden = $('orden');
   $('filtros').innerHTML = '<button class="chip on" data-marca="">Todos</button><button class="chip" data-marca="iphone">iPhone</button>' +
     '<button class="chip" data-marca="samsung">Samsung</button><button class="chip" data-marca="nuevo">🆕 Nuevos</button>' +
-    '<button class="chip" data-marca="semi">⭐ Seminuevos</button><button class="chip" data-cuotas="1">💳 Cuotas</button>';
+    '<button class="chip" data-marca="semi">⭐ Seminuevos</button><button class="chip" data-cuotas="1">💳 Tasa 0%</button>';
   $('filtros').appendChild(orden);
 
   // Fotos de referencia por modelo y color (carpeta /fotos). Para agregar una: subir "modelo--color.webp" y anotarla aquí.
@@ -128,7 +128,7 @@
       ? '<span class="tag-precio">PRECIO DE CONTADO</span><div class="fila-precio"><span class="precio-neg">' + (varios ? '<small>Desde</small>' : '') + dinero(o.p) + '</span>' +
         '<button class="btn-int" data-modelo="' + k + '">💬 Me interesa</button></div>' +
         '<div class="nota-p">Efectivo o transferencia' + (o.r ? '<br>Con tarjeta: <b>' + dinero(o.r) + '</b>' : '') + '</div>' +
-        (o.r ? '<details class="cuotas-acc"><summary>💳 Ver cuotas con tarjeta</summary><ul>' +
+        (o.r ? '<details class="cuotas-acc"><summary>💳 Ver Tasa 0% con tarjeta</summary><ul>' +
           '<li><span>1 pago</span><b>' + dinero(o.r) + '</b></li>' +
           [3, 6, 12, 18, 24, 36].map(function(m){ var bs = BANCOS.filter(function(b){ return b.max >= m; }).map(function(b){ return b.n.replace('Banco ', ''); }); return '<li><span>' + m + ' meses' + (bs.length < BANCOS.length ? '<small>Solo ' + esc(bs.join(' y ')) + '</small>' : '') + '</span><b>' + dinero(o.r / m) + '</b></li>'; }).join('') +
           '</ul></details>' : '')
