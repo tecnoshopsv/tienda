@@ -99,7 +99,7 @@
     document.title = 'Gadgets y accesorios · TecnoShopSV Santa Tecla';
     heroAparte('GADGETS · TECNOSHOPSV', 'Gadgets y accesorios, <span>originales.</span>',
       'Audífonos, cargadores, relojes y más. Paga en efectivo, transferencia o con tarjeta y recibe en todo El Salvador.',
-      ['💳 Tarjeta y cuotas', '🚚 Envíos a todo el país', '📍 7a Av. Norte 2-9, Santa Tecla']);
+      ['💳 Tasa 0% con tarjeta', '🚚 Envíos a todo el país', '📍 7a Av. Norte 2-9, Santa Tecla']);
     info.parentNode.insertBefore(secG, info);
     secS.remove();
   } else if (SERVICIO) {
