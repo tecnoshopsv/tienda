@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gadgets y accesorios · TecnoShopSV Santa Tecla</title>
-<meta name="description" content="Gadgets y accesorios originales en Santa Tecla: audífonos, cargadores, relojes y más. Paga con tarjeta o en cuotas y recibe en todo El Salvador.">
+<meta name="description" content="Gadgets y accesorios originales en Santa Tecla: audífonos, cargadores, relojes y más. Paga con tarjeta o a Tasa 0% y recibe en todo El Salvador.">
 <meta name="theme-color" content="#2B0F4C">
 <link rel="icon" href="https://catalogo.tecnoshopsv.com/favicon-32.png">
 <link rel="apple-touch-icon" href="https://catalogo.tecnoshopsv.com/icono-180.png">
@@ -182,7 +182,7 @@
       <div class="sello"><b>3 meses de garantía</b>Directo con nosotros</div>
       <div class="sello"><b>Cargador original</b>Cable + cubo incluidos</div>
       <div class="sello"><b>Envíos a todo el país</b>Motorista el mismo día</div>
-      <div class="sello"><b>Cuotas con tarjeta</b>BAC, Agrícola, Cuscatlán, Promerica</div>
+      <div class="sello"><b>Tasa 0% con tarjeta</b>BAC, Agrícola, Cuscatlán, Promerica</div>
     </div>
   </div>
 </section>
@@ -193,7 +193,7 @@
     <button class="chip on" data-marca="">Todos</button>
     <button class="chip" data-marca="iphone">iPhone</button>
     <button class="chip" data-marca="samsung">Samsung</button>
-    <button class="chip" data-cuotas="1">💳 Calcular cuotas</button>
+    <button class="chip" data-cuotas="1">💳 Calcular Tasa 0%</button>
     <select class="orden" id="orden" aria-label="Ordenar">
       <option value="modelo">Ordenar: modelo</option>
       <option value="menor">Menor precio</option>
@@ -239,10 +239,10 @@
       <h3>💳 Formas de pago</h3>
       <ul>
         <li>Efectivo o transferencia bancaria: precio de contado.</li>
-        <li>Tarjeta de crédito o débito y cuotas: precio regular.</li>
-        <li>Cuotas con BAC y Banco Agrícola hasta 12 meses, Promerica hasta 24 y Banco Cuscatlán hasta 36 meses.</li>
+        <li>Tarjeta de crédito o débito y Tasa 0%: precio regular.</li>
+        <li>Tasa 0% con BAC y Banco Agrícola hasta 12 meses, Promerica hasta 24 y Banco Cuscatlán hasta 36 meses.</li>
       </ul>
-      <button class="btn btn-sec" type="button" data-cuotas="1" style="margin-top:6px">Calcular mis cuotas</button>
+      <button class="btn btn-sec" type="button" data-cuotas="1" style="margin-top:6px">Calcular mi Tasa 0%</button>
     </div>
     <div class="bloque">
       <h3>📍 Visítanos</h3>
@@ -284,7 +284,7 @@
 
 <!-- Calculadora de cuotas -->
 <div class="fondo-modal" id="modalCuotas" hidden><div class="modal" role="dialog" aria-labelledby="cuoTit">
-  <div class="modal-cab"><h3 id="cuoTit">Calcula tus cuotas<small id="cuoSub">Elige el equipo, tu banco y el plazo</small></h3><button class="cerrar" data-cerrar="modalCuotas" aria-label="Cerrar">×</button></div>
+  <div class="modal-cab"><h3 id="cuoTit">Calcula tu Tasa 0%<small id="cuoSub">Elige el equipo, tu banco y el plazo</small></h3><button class="cerrar" data-cerrar="modalCuotas" aria-label="Cerrar">×</button></div>
   <div class="modal-cuerpo">
     <label class="campo"><span>Equipo</span><select id="cuoEquipo"></select></label>
     <label class="campo"><span>Banco</span><select id="cuoBanco"></select></label>
@@ -303,7 +303,7 @@
     <div class="opciones" id="pedPago">
       <label class="opcion"><input type="radio" name="pago" value="contado" checked><div><b>Efectivo o transferencia</b><small>Precio de contado</small></div></label>
       <label class="opcion"><input type="radio" name="pago" value="tarjeta"><div><b>Tarjeta de crédito o débito</b><small>Precio regular, en un solo pago</small></div></label>
-      <label class="opcion"><input type="radio" name="pago" value="cuotas"><div><b>Cuotas con tarjeta</b><small>Precio regular, elige banco y plazo</small></div></label>
+      <label class="opcion"><input type="radio" name="pago" value="cuotas"><div><b>Tasa 0% con tarjeta</b><small>Precio regular, elige banco y plazo</small></div></label>
     </div>
     <div id="pedCuotas" hidden>
       <label class="campo"><span>Banco</span><select id="pedBanco"></select></label>
@@ -461,9 +461,9 @@ function abrirModelo(k){
       return '<div class="op"><div class="op-top"><div><div class="op-t"><span class="punto" style="display:inline-block;vertical-align:-2px;margin-right:6px;background:' + colorDe(o.c) + '"></span>' + esc(o.c) + '</div>' +
         '<div class="op-s">Categoría ' + esc(o.k) + (o.b ? ' · Batería ' + esc(o.b) : '') + '</div>' +
         (o.n <= 2 ? '<div class="quedan">' + (o.n === 1 ? 'Última unidad' : 'Quedan ' + o.n) + '</div>' : '') + '</div>' +
-        '<div class="precios">' + (o.p ? '<span class="pago-lbl">Efectivo o transferencia</span><b>' + dinero(o.p) + '</b>' + (o.r ? '<span>Tarjeta o cuotas: ' + dinero(o.r) + '</span>' : '') : '<b>Consultar</b>') + '</div></div>' +
+        '<div class="precios">' + (o.p ? '<span class="pago-lbl">Efectivo o transferencia</span><b>' + dinero(o.p) + '</b>' + (o.r ? '<span>Tarjeta o Tasa 0%: ' + dinero(o.r) + '</span>' : '') : '<b>Consultar</b>') + '</div></div>' +
         (o.o ? '<div class="op-nota">📝 ' + esc(o.o) + '</div>' : '') +
-        '<div class="op-acc">' + acc + (o.r ? '<button class="btn btn-sec" data-cuotas-id="' + esc(o.id) + '">💳 Ver cuotas</button>' : '') + '</div></div>';
+        '<div class="op-acc">' + acc + (o.r ? '<button class="btn btn-sec" data-cuotas-id="' + esc(o.id) + '">💳 Ver Tasa 0%</button>' : '') + '</div></div>';
     }).join('') +
     '<p class="aviso-peq">Incluye cargador original (cable + cubo). Imagen de referencia; el color y la categoría son los indicados en cada opción.</p>';
   $('modalDet').hidden = false;
@@ -488,12 +488,12 @@ function llenarCuotas(){
 function calcularCuotas(){
   var o = porId[$('cuoEquipo').value]; var meses = +$('cuoPlazo').value || 12; var b = BANCOS[+$('cuoBanco').value];
   if (!o) { $('cuoRes').innerHTML = 'Elige un equipo.'; return; }
-  $('cuoRes').innerHTML = '<div class="fila"><span>Precio con tarjeta o cuotas</span><b>' + dinero(o.r) + '</b></div>' +
+  $('cuoRes').innerHTML = '<div class="fila"><span>Precio con tarjeta o Tasa 0%</span><b>' + dinero(o.r) + '</b></div>' +
     '<div class="fila"><span>' + esc(b.n) + ' · ' + meses + ' meses</span></div>' +
     '<div class="fila"><span>Cuota mensual aprox.</span><span class="grande">' + dinero(o.r / meses) + '</span></div>' +
     '<div class="fila"><span>Pagando en efectivo o transferencia</span><b>' + dinero(o.p) + '</b></div>' +
     '<div class="op-acc">' + (pedido[o.id] ? '' : '<button class="btn btn-add" data-mas="' + esc(o.id) + '">Agregar al pedido</button>') +
-    '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + linkWA('Hola, quiero el ' + nombreEq(o) + ' en ' + meses + ' cuotas con ' + b.n + ' (' + dinero(o.r) + ', aprox. ' + dinero(o.r / meses) + ' al mes).') + '">Consultar por WhatsApp</a></div>';
+    '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + linkWA('Hola, quiero el ' + nombreEq(o) + ' en ' + meses + ' meses a Tasa 0% con ' + b.n + ' (' + dinero(o.r) + ', aprox. ' + dinero(o.r / meses) + ' al mes).') + '">Consultar por WhatsApp</a></div>';
 }
 function abrirCuotas(id){
   if (!items.length) return;
@@ -553,7 +553,7 @@ function enviarPedido(){
   var t = totales(); if (!t.ls.length) return;
   var nombre = $('pedNombre').value.trim(), dir = $('pedDir').value.trim(), ent = entrega(), pago = formaPago();
   guardar('ts_tienda_cliente', { nombre: nombre, dir: dir });
-  var txtPago = pago === 'contado' ? 'Efectivo o transferencia' : pago === 'tarjeta' ? 'Tarjeta (un solo pago)' : 'Cuotas con ' + BANCOS[+$('pedBanco').value].n + ' a ' + $('pedPlazo').value + ' meses';
+  var txtPago = pago === 'contado' ? 'Efectivo o transferencia' : pago === 'tarjeta' ? 'Tarjeta (un solo pago)' : 'Tasa 0% con ' + BANCOS[+$('pedBanco').value].n + ' a ' + $('pedPlazo').value + ' meses';
   var txtEnt = ent === 'tienda' ? 'Retiro en tienda (Santa Tecla)' : ent === 'motorista' ? 'Motorista personalizado (llega hoy)' : 'C807 Express (llega el ' + fechaLlegada('c807') + ')';
   var msg = 'Hola TecnoShopSV, quiero hacer este pedido' + (nombre ? ' (' + nombre + ')' : '') + ':\n\n' +
     t.ls.map(function(l){ return '• ' + l.n + ' x ' + nombreEq(l.o) + ' — ' + dinero((t.regular ? l.o.r : l.o.p)) + ' c/u'; }).join('\n') +
