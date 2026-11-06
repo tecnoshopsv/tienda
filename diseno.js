@@ -50,7 +50,7 @@
   };
   var est = document.createElement('style');
   est.textContent = '.prod .foto img.fc,.det-foto img.fc{clip-path:none;transform:none;padding:7%;box-sizing:border-box}' +
-    '.prod .punto.sel{box-shadow:0 0 0 2px #fff,0 0 0 4px #7B3FC4}.prod .punto[data-foto]{cursor:pointer}' +
+    '.prod .punto.sel{box-shadow:0 0 0 2px #fff,0 0 0 4px #7B3FC4}.prod .punto[data-foto]{cursor:pointer}.prod .colores-txt{font-size:12px;opacity:.75;margin:2px 0 4px;line-height:1.3}' +
     '#modalDet .op{transition:border-color .15s,box-shadow .15s}#modalDet .op.sel{border-color:#7B3FC4;box-shadow:0 0 0 1px #7B3FC4}';
   document.head.appendChild(est);
   // Al pasar el cursor sobre un color, la foto de la tarjeta cambia a ese color
@@ -138,6 +138,7 @@
       '<div class="cuerpo"><span class="lbl">' + NOMBRE[md.marca] + '</span><h3 data-modelo="' + k + '">' + esc(md.m) + '</h3>' +
       '<span class="cap">' + esc(md.g) + ' · Cat. ' + esc(cats.join(' / ')) + '</span>' +
       '<div class="colores">' + colores.map(function(c){ var f = fotoColor(md.m, c); return '<span class="punto' + (c === c0 ? ' sel' : '') + '" title="' + esc(c) + '"' + (f ? ' data-foto="' + f + '" role="button" tabindex="0"' : '') + ' style="background:' + colorDe(c) + '"></span>'; }).join('') + '</div>' +
+      '<div class="colores-txt">' + colores.map(function(c){ return esc(c); }).join(' · ') + '</div>' +
       precio + '</div></div>';
   }
 
