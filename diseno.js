@@ -39,7 +39,7 @@
   // Fotos de referencia por modelo y color (carpeta /fotos). Para agregar una: subir "modelo--color.webp" y anotarla aquí.
   // Colores extra para los puntitos
   COLORES.anaranjado = '#f07a2a'; COLORES.naranja = '#f07a2a'; COLORES.silver = '#d9d9d9';
-  var FOTOS_COLOR = ('iphone-11--blanco iphone-11--negro iphone-11--morado iphone-11-pro-max--blanco iphone-11-pro-max--verde iphone-11-pro-max--negro iphone-11-pro-max--dorado iphone-12--verde iphone-12--azul iphone-12--negro iphone-13--verde iphone-13--celeste iphone-13--blanco iphone-13--negro iphone-13--rojo iphone-13-pro--celeste iphone-13-pro--blanco iphone-13-pro--dorado iphone-13-pro--verde iphone-13-pro--negro iphone-13-pro-max--negro iphone-14--negro iphone-14--blanco iphone-14-pro--negro iphone-14-pro-max--negro iphone-15--amarillo iphone-15-plus--rosado iphone-15-pro--negro iphone-15-pro-max--azul iphone-16-pro--dorado iphone-16-pro-max--gris iphone-16-pro-max--negro iphone-16-pro-max--dorado iphone-17-pro-max--azul iphone-17-pro-max--anaranjado iphone-17-pro-max--blanco samsung-s21-ultra--silver samsung-s21-ultra--negro samsung-s22-ultra--burgundy samsung-s22-ultra--verde samsung-s22-ultra--negro samsung-s22-ultra--blanco samsung-s23-ultra--negro samsung-s25--celeste samsung-s25-ultra--gris samsung-s26--negro').split(' ');
+  var FOTOS_COLOR = ('iphone-11--blanco iphone-11--negro iphone-11--morado iphone-11-pro-max--blanco iphone-11-pro-max--verde iphone-11-pro-max--negro iphone-11-pro-max--dorado iphone-12--verde iphone-12--azul iphone-12--negro iphone-13--verde iphone-13--celeste iphone-13--blanco iphone-13--negro iphone-13--rojo iphone-13-pro--celeste iphone-13-pro--blanco iphone-13-pro--dorado iphone-13-pro--verde iphone-13-pro--negro iphone-13-pro-max--negro iphone-14--negro iphone-14--blanco iphone-14-pro--negro iphone-14-pro-max--negro iphone-15--amarillo iphone-15-plus--rosado iphone-15-pro--negro iphone-15-pro-max--azul iphone-16-pro--dorado iphone-16-pro-max--gris iphone-16-pro-max--negro iphone-16-pro-max--dorado iphone-17-pro-max--azul iphone-17-pro-max--anaranjado iphone-17-pro-max--blanco samsung-s21-ultra--silver samsung-s21-ultra--negro samsung-s22-ultra--burgundy samsung-s22-ultra--verde samsung-s22-ultra--negro samsung-s22-ultra--blanco samsung-s23-ultra--negro samsung-s25--celeste samsung-s25-ultra--gris samsung-s26--negro samsung-s25-ultra--celeste samsung-z-flip-4--amarillo samsung-z-flip-4--blanco').split(' ');
   function slug(s){ return norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
   window.fotoColor = function(m, c){ var f = slug(m) + '--' + slug(c); return FOTOS_COLOR.indexOf(f) >= 0 ? 'fotos/' + f + '.webp' : ''; };
   var fotoBase = window.fotoDe;
@@ -70,6 +70,29 @@
   }
   document.addEventListener('mouseover', fotoOpcion);
   document.addEventListener('click', fotoOpcion);
+
+  // Miniatura del equipo (color exacto si hay foto) para el pedido y la calculadora
+  function miniDe(o){
+    var src = fotoColor(o.m, o.c);
+    return '<span class="mini">' + (src ? '<img src="' + src + '" alt="' + esc(o.m + ' ' + o.c) + '">' : fotoBase(o.m)) + '</span>';
+  }
+  est.textContent += '.mini{width:52px;height:52px;border-radius:12px;background:#F5F4F8;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}' +
+    '.mini img{width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box;clip-path:none;transform:none}.mini svg{width:50%;color:#B7A9CC}' +
+    '.linea.con-mini{grid-template-columns:auto 1fr auto;align-items:center}.cuo-eq{display:flex;gap:12px;align-items:center;margin:4px 0 10px}.cuo-eq .mini{width:72px;height:72px}';
+  var pintarPedidoBase = window.pintarPedido;
+  window.pintarPedido = function(){
+    pintarPedidoBase();
+    var ls = totales().ls, filas = document.querySelectorAll('#pedLista .linea');
+    filas.forEach(function(f, i){ if (ls[i] && !f.querySelector('.mini')) { f.classList.add('con-mini'); f.insertAdjacentHTML('afterbegin', miniDe(ls[i].o)); } });
+  };
+  var calcularCuotasBase = window.calcularCuotas;
+  window.calcularCuotas = function(){
+    calcularCuotasBase();
+    var o = porId[$('cuoEquipo').value], res = $('cuoRes'), box = $('cuoMini');
+    if (!box) { box = document.createElement('div'); box.id = 'cuoMini'; box.className = 'cuo-eq'; res.parentNode.insertBefore(box, res); }
+    box.innerHTML = o ? miniDe(o) + '<div><b>' + esc(o.m + ' ' + o.g) + '</b><div class="op-s">' + esc(o.c + ' · Cat. ' + o.k) + '</div></div>' : '';
+  };
+  if (typeof pintarPedido === 'function') pintarPedido();
 
   function esNuevo(o){ return /nuevo|open box/i.test(o.k); }
   var NOMBRE = { iphone: 'iPhone', samsung: 'Samsung', otro: 'Otras marcas' };
