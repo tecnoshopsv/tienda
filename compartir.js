@@ -132,4 +132,34 @@
     window.calcularCuotas = function () { calcBase.apply(this, arguments); arreglarCalculadora(); };
   }
   ['cuoEquipo', 'cuoBanco', 'cuoPlazo'].forEach(function (id) { var el = $(id); if (el) el.addEventListener('change', arreglarCalculadora); });
+  // Mensaje del pedido (carrito) con el mismo formato
+  var btnPedido = $('enviarPedido');
+  if (btnPedido && typeof totales === 'function') {
+    btnPedido.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopImmediatePropagation();
+      var t = totales(); if (!t.ls.length) return;
+      var nombre = $('pedNombre').value.trim(), dir = $('pedDir').value.trim(), ent = entrega(), pago = formaPago();
+      guardar('ts_tienda_cliente', { nombre: nombre, dir: dir });
+      var meses = +$('pedPlazo').value || 12, banco = BANCOS[+$('pedBanco').value] || BANCOS[0];
+      var txtPago = pago === 'contado' ? 'Efectivo o transferencia (precio de contado)' : pago === 'tarjeta' ? 'Tarjeta, un solo pago' : 'Tasa 0% con ' + banco.n + ' a ' + meses + ' meses';
+      var txtEnt = ent === 'tienda' ? 'Retiro en tienda (Santa Tecla)' : ent === 'motorista' ? 'Motorista personalizado (llega hoy)' : 'C807 Express (llega el ' + fechaLlegada('c807') + ')';
+      var lineas = t.ls.map(function (l) {
+        var o = l.o, est = estado(o.k), precio = t.regular ? o.r : o.p;
+        return '• *' + o.m + ' · ' + o.g + '*' + (est ? ' (' + est + ')' : '') + '\n' +
+          '   🎨 ' + o.c + ' · 🏷️ Cat. ' + o.k + (o.b ? ' · 🔋 ' + o.b : '') + '\n' +
+          '   💵 ' + (l.n > 1 ? l.n + ' × ' + dinero(precio) + ' = ' + dinero(precio * l.n) : dinero(precio));
+      }).join('\n\n');
+      var msg = 'Hola TecnoShopSV 👋 Quiero hacer este pedido:\n' +
+        (nombre ? '👤 ' + nombre + '\n' : '') +
+        '\n🛒 *' + (t.n === 1 ? '1 equipo' : t.n + ' equipos') + '*\n' + lineas + '\n\n' +
+        '💳 Pago: ' + txtPago + '\n' +
+        '🚚 Entrega: ' + txtEnt + '\n' +
+        (ent !== 'tienda' && dir ? '📍 Dirección: ' + dir + '\n' : '') +
+        (t.envio ? '📦 Envío: ' + dinero(t.envio) + '\n' : '') +
+        '\n💰 *Total: ' + dinero(t.total) + '*' + (ent === 'motorista' ? ' + envío según zona' : '') + '\n' +
+        (pago === 'cuotas' ? '🗓️ Aprox. *' + dinero(t.total / meses) + '* al mes\n' : '') +
+        '\n¿Me confirman la disponibilidad?';
+      window.open(linkWA(msg), '_blank');
+    }, true);
+  }
 })();
