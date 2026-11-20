@@ -100,7 +100,7 @@
     var sl = [];
     sl.push({ k: 'Catálogo de ' + mes, h: 'Tu próximo celular, <em>garantizado.</em>',
       s: 'iPhone y Samsung nuevos y seminuevos, revisados uno por uno y liberados para cualquier compañía.',
-      chips: [['escudo', '3 meses de garantía'], ['rayo', 'Tasa 0% con tarjeta'], ['caja', 'Envíos a todo el país']],
+      chips: [['escudo', '3 meses de garantía'], ['rayo', 'Cargador original'], ['caja', 'Envíos a todo el país']],
       bt: ['Ver equipos', '#filtros'],
       vis: '<div class="nt-trio"><img src="' + F + 'samsung-s24-ultra--negro.webp" alt=""><img src="' + F + 'iphone-16-pro-max--dorado.webp" alt=""><img src="' + F + 'iphone-17-pro-max--anaranjado.webp" alt=""></div>' });
     if (nuevo && nuevo.src) sl.push({ k: 'Recién llegado', h: 'Ya está aquí el <em>' + nuevo.nombre + '</em>',
