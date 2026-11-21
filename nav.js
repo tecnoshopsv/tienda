@@ -103,3 +103,6 @@
     if (h === '#q') setTimeout(irBuscar, 600);
   }
 })();
+
+// Contador de visitas para el CRM (pestaña Web). Se carga en todas las páginas junto con el menú.
+(function () { var s = document.createElement('script'); s.src = '/analitica.js'; s.async = true; document.body.appendChild(s); })();
