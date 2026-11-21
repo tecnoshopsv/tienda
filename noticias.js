@@ -128,7 +128,7 @@
     var raiz = document.createElement('div'); raiz.className = 'nt'; raiz.setAttribute('aria-roledescription', 'carrusel');
     raiz.innerHTML = '<div class="nt-pista">' + sl.map(function (s, i) {
       return '<div class="nt-sl" role="group" aria-label="' + (i + 1) + ' de ' + sl.length + '"><div>' +
-        '<div class="nt-kick">' + s.k + '</div>' + (i ? '<h2>' : '<h1>') + s.h + (i ? '</h2>' : '</h1>')<p class="nt-sub">' + s.s + '</p>' +
+        '<div class="nt-kick">' + s.k + '</div>' + (i ? '<h2>' : '<h1>') + s.h + (i ? '</h2>' : '</h1>') + '<p class="nt-sub">' + s.s + '</p>' +
         (s.chips ? '<div class="nt-chips">' + s.chips.map(function (c) { return '<span>' + ic(c[0]) + c[1] + '</span>'; }).join('') + '</div>' : '') +
         (s.bancos && s.bancos.length ? '<div class="nt-bancos">' + s.bancos.map(function (b) { return '<span><img src="' + b + '" alt=""></span>'; }).join('') + '</div>' : '') +
         '<div class="nt-acc"><a class="nt-bt" href="' + s.bt[1] + '"' + ext(s.bt[1]) + '>' + s.bt[0] +
