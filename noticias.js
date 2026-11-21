@@ -23,8 +23,8 @@
     '.nt-sl{flex:0 0 100%;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:36px;min-height:300px;box-sizing:border-box;padding:6px 2px}' +
     '.nt-kick{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FFC52E;margin-bottom:14px}' +
     '.nt-kick:before{content:"";width:22px;height:2px;background:#FFC52E;border-radius:2px}' +
-    '.nt h2{font-size:clamp(28px,4vw,48px);line-height:1.04;letter-spacing:-.02em;margin:0 0 14px;color:#fff;font-weight:800}' +
-    '.nt h2 em{font-style:normal;color:#FFC52E}' +
+    '.nt h1,.nt h2{font-size:clamp(28px,4vw,48px);line-height:1.04;letter-spacing:-.02em;margin:0 0 14px;color:#fff;font-weight:800}' +
+    '.nt h1 em,.nt h2 em{font-style:normal;color:#FFC52E}' +
     '.nt-sub{margin:0 0 20px;color:rgba(255,255,255,.78);font-size:clamp(14px,1.5vw,17px);line-height:1.5;max-width:520px}' +
     '.nt-acc{display:flex;align-items:center;gap:18px;flex-wrap:wrap}' +
     '.nt-bt{display:inline-flex;align-items:center;gap:10px;background:#FFC52E;color:#2a0f4a;font-weight:800;border-radius:12px;padding:13px 20px;text-decoration:none;font-size:15px;box-shadow:0 10px 24px -10px rgba(255,197,46,.7);transition:transform .2s,box-shadow .2s}' +
@@ -128,7 +128,7 @@
     var raiz = document.createElement('div'); raiz.className = 'nt'; raiz.setAttribute('aria-roledescription', 'carrusel');
     raiz.innerHTML = '<div class="nt-pista">' + sl.map(function (s, i) {
       return '<div class="nt-sl" role="group" aria-label="' + (i + 1) + ' de ' + sl.length + '"><div>' +
-        '<div class="nt-kick">' + s.k + '</div><h2>' + s.h + '</h2><p class="nt-sub">' + s.s + '</p>' +
+        '<div class="nt-kick">' + s.k + '</div>' + (i ? '<h2>' : '<h1>') + s.h + (i ? '</h2>' : '</h1>')<p class="nt-sub">' + s.s + '</p>' +
         (s.chips ? '<div class="nt-chips">' + s.chips.map(function (c) { return '<span>' + ic(c[0]) + c[1] + '</span>'; }).join('') + '</div>' : '') +
         (s.bancos && s.bancos.length ? '<div class="nt-bancos">' + s.bancos.map(function (b) { return '<span><img src="' + b + '" alt=""></span>'; }).join('') + '</div>' : '') +
         '<div class="nt-acc"><a class="nt-bt" href="' + s.bt[1] + '"' + ext(s.bt[1]) + '>' + s.bt[0] +
